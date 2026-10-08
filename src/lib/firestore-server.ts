@@ -65,15 +65,20 @@ async function withFallback<T>(load: () => Promise<T | null>, fallback: T, isEmp
   }
 }
 
+// Once the admin panel has imported the built-in content (settings/content-seeded),
+// Firestore is the source of truth even when empty, so deleted items stay deleted.
+const isSeeded = async () => !!(await getDocument('settings', 'content-seeded'));
+
 export const getProjectsServer = () =>
-  withFallback(async () => (await listDocs<Project>('projects')).sort(byOrder), defaultProjects, (v) => !v.length);
+  withFallback(async () => (await listDocs<Project>('projects')).sort(byOrder), defaultProjects, (v) => !v.length)
+    .then(async (v) => (v === defaultProjects && PROJECT_ID && (await isSeeded().catch(() => false)) ? [] : v));
 
 export const getServicesServer = () =>
   withFallback(
     async () => (await listDocs<Service>('services')).filter((s) => s.active !== false).sort(byOrder),
     defaultServices,
     (v) => !v.length,
-  );
+  ).then(async (v) => (v === defaultServices && PROJECT_ID && (await isSeeded().catch(() => false)) ? [] : v));
 
 export const getSettingsServer = () =>
   withFallback(

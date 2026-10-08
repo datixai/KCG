@@ -3,7 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { ExternalLink, FolderKanban, LayoutDashboard, LogOut, Mail, Settings, Wrench } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useAuth, useRequireAuth } from '@/hooks/useAuth';
+import { seedDefaultContentOnce } from '@/lib/seed';
+import { friendlyError } from '@/lib/errors';
 
 export const ADMIN = '/kcg-admin';
 
@@ -22,8 +26,18 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   const { logout } = useAuth();
   const router = useRouter();
 
+  // First visit: copy the content the website is showing into Firestore so it can be edited here
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    if (!user) return;
+    seedDefaultContentOnce()
+      .then((n) => { if (n) toast.success(`Imported ${n} projects & services from the website`); })
+      .catch((err) => toast.error(friendlyError(err), { duration: 8000 }))
+      .finally(() => setReady(true));
+  }, [user]);
+
   if (isLogin) return <>{children}</>;
-  if (loading || !user)
+  if (loading || !user || !ready)
     return (
       <div className="grid min-h-svh place-items-center">
         <div className="size-10 animate-spin rounded-full border-2 border-brand-green/20 border-t-brand-green" />
