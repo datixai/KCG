@@ -5,11 +5,12 @@ export const site = {
   description:
     'Delivering high-quality construction, development and infrastructure projects across Azad Kashmir and beyond.',
   location: 'Dadyal, Azad Kashmir',
-  // Defaults until set in admin Settings (placeholders from the client's mockup)
-  phoneDisplay: '+92 5822 123456',
-  whatsapp: '925822123456',
+  // Defaults until changed in admin Settings (from the KCG business card)
+  owner: 'Akeeb Yakoob',
+  phoneDisplay: '+92 345 5546831',
+  whatsapp: '923455546831',
   email: 'info@kashmirconstructiongroup.co.uk',
-  address: 'Paaglyan, Dhangali, Kallar Syedan – Dadyal Rd, Dadyal, AJK',
+  address: 'Paagliyan, Dhangali, Kallar Syedan – Dadyal Rd, Dadyal, Azad Jammu Kashmir',
   social: {
     tiktok: 'https://www.tiktok.com/@kashmirconstructiongroup',
   },

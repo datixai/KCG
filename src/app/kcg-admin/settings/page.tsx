@@ -8,6 +8,7 @@ import { defaultSettings } from '@/lib/defaults';
 import type { SiteSettings } from '@/types';
 
 const fields: { name: keyof SiteSettings; label: string; optional?: boolean }[] = [
+  { name: 'owner', label: 'Proprietor name (leave empty to hide)', optional: true },
   { name: 'phoneDisplay', label: 'Pakistan phone (as shown on site)' },
   { name: 'phone2Display', label: 'UK phone (leave empty to hide)', optional: true },
   { name: 'whatsapp', label: 'WhatsApp number (digits only, e.g. 923001234567)' },

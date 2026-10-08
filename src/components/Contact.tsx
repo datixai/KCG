@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, UserRound } from 'lucide-react';
 import type { SiteSettings } from '@/types';
 import type { HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';
@@ -7,6 +7,7 @@ import ContactForm from './ContactForm';
 export default function Contact({ settings, content }: { settings: SiteSettings; content: HomeContent['contact'] }) {
   const tel = (n: string) => `tel:${n.replace(/[^\d+]/g, '')}`;
   const items = [
+    ...(settings.owner ? [{ icon: UserRound, label: 'Proprietor', value: settings.owner, href: '' }] : []),
     { icon: Phone, label: 'Pakistan', value: settings.phoneDisplay, href: tel(settings.phoneDisplay) },
     ...(settings.phone2Display ? [{ icon: Phone, label: 'United Kingdom', value: settings.phone2Display, href: tel(settings.phone2Display) }] : []),
     { icon: Mail, label: 'Email', value: settings.email, href: `mailto:${settings.email}` },

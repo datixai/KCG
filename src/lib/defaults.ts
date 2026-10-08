@@ -2,8 +2,8 @@ import type { Project, Service, SiteSettings } from '@/types';
 import { site } from '@/config/site';
 
 // Shown on the public site until changed from the admin panel.
-// TODO: phone numbers are placeholders from the client's mockup — confirm the real ones.
 export const defaultSettings: SiteSettings = {
+  owner: site.owner,
   phoneDisplay: site.phoneDisplay,
   phone2Display: '+44 7440 392017',
   whatsapp: site.whatsapp,

@@ -48,6 +48,7 @@ export default function Footer({ settings, services, blurb }: { settings: SiteSe
         <div>
           <h3 className={heading}>Contact Us</h3>
           <ul className="space-y-3.5 text-sm text-white/70">
+            {settings.owner && <li className="text-xs uppercase tracking-[0.2em] text-gold">Prop: {settings.owner}</li>}
             {[settings.phoneDisplay, settings.phone2Display].filter(Boolean).map((p) => (
               <li key={p}><a href={`tel:${p.replace(/[^\d+]/g, '')}`} className="flex items-center gap-3 hover:text-gold"><Phone className="size-4 text-gold" /> {p}</a></li>
             ))}

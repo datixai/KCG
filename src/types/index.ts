@@ -28,6 +28,7 @@ export interface Message {
 }
 
 export interface SiteSettings {
+  owner: string;
   phoneDisplay: string;
   phone2Display: string;
   whatsapp: string;
