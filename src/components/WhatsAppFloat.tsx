@@ -1,9 +1,12 @@
 import { WhatsAppIcon } from './BrandIcons';
+import { digits } from '@/lib/safe';
 
 export default function WhatsAppFloat({ whatsapp }: { whatsapp: string }) {
+  const number = digits(whatsapp);
+  if (!number) return null;
   return (
     <a
-      href={`https://wa.me/${whatsapp}`}
+      href={`https://wa.me/${number}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

@@ -4,14 +4,18 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     // Only these Firebase Auth accounts can edit content from the admin panel.
-    // Firebase allows one account per email, and public sign-up should be turned off
+    // They must sign in with email + password, so turning on another sign-in method
+    // (e.g. Google) can never let someone claim an admin email through it.
+    // Public sign-up should also be turned off
     // (Authentication > Settings > User actions > uncheck "Enable create (sign-up)").
     // To add or remove an admin, edit this list and publish the rules in Firebase Console.
     function isAdmin() {
-      return request.auth != null && request.auth.token.email in [
-        'datixai.com@gmail.com',
-        'info@kashmirconstructiongroup.com'
-      ];
+      return request.auth != null
+        && request.auth.token.firebase.sign_in_provider == 'password'
+        && request.auth.token.email in [
+          'datixai.com@gmail.com',
+          'info@kashmirconstructiongroup.com'
+        ];
     }
 
     // ── Public read, admin write ──
@@ -29,11 +33,16 @@ service cloud.firestore {
     }
 
     // ── Photos uploaded from the admin panel (stored as data URLs, served at /img/<id>) ──
+    // Readable one at a time by id only (no listing), and only raster images — never SVG,
+    // which can carry scripts.
     match /images/{docId} {
-      allow read: if true;
+      allow get: if true;
       allow create: if isAdmin()
+        && request.resource.data.keys().hasOnly(['data', 'createdAt'])
         && request.resource.data.data is string
-        && request.resource.data.data.size() < 1000000;
+        && request.resource.data.data.size() < 1000000
+        && request.resource.data.data.matches('^data:image/(jpeg|png|webp|gif|avif);base64,.*')
+        && request.resource.data.createdAt == request.time;
       allow delete: if isAdmin();
     }
 
@@ -49,7 +58,16 @@ service cloud.firestore {
         && request.resource.data.phone.size() > 0 && request.resource.data.phone.size() < 40
         && request.resource.data.message is string
         && request.resource.data.message.size() > 0 && request.resource.data.message.size() < 5000;
-      allow read, update, delete: if isAdmin();
+      allow read, delete: if isAdmin();
+      // Admin can only mark a message read; the customer's words can't be altered
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read'])
+        && request.resource.data.read is bool;
+    }
+
+    // Everything else is closed (Firestore denies by default; stated here for clarity)
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

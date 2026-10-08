@@ -3,17 +3,21 @@ import { site } from '@/config/site';
 import type { Service, SiteSettings } from '@/types';
 import { FacebookIcon, InstagramIcon, LinkedInIcon, TikTokIcon, WhatsAppIcon, YouTubeIcon } from './BrandIcons';
 import Logo from './Logo';
+import { digits, safeEmail, safeUrl } from '@/lib/safe';
 import { AjkFlag, UkFlag } from './Flags';
 
 export default function Footer({ settings, services, blurb }: { settings: SiteSettings; services: Service[]; blurb: string }) {
+  // Links from admin Settings are checked so they can only be real web/email/WhatsApp links
+  const email = safeEmail(settings.email);
+  const wa = digits(settings.whatsapp);
   const socials = [
-    { label: 'Facebook', href: settings.facebook, Icon: FacebookIcon },
-    { label: 'Instagram', href: settings.instagram, Icon: InstagramIcon },
-    { label: 'TikTok', href: settings.tiktok, Icon: TikTokIcon },
-    { label: 'YouTube', href: settings.youtube, Icon: YouTubeIcon },
-    { label: 'LinkedIn', href: settings.linkedin, Icon: LinkedInIcon },
-    { label: 'WhatsApp', href: `https://wa.me/${settings.whatsapp}`, Icon: WhatsAppIcon },
-    { label: 'Email', href: `mailto:${settings.email}`, Icon: Mail },
+    { label: 'Facebook', href: safeUrl(settings.facebook), Icon: FacebookIcon },
+    { label: 'Instagram', href: safeUrl(settings.instagram), Icon: InstagramIcon },
+    { label: 'TikTok', href: safeUrl(settings.tiktok), Icon: TikTokIcon },
+    { label: 'YouTube', href: safeUrl(settings.youtube), Icon: YouTubeIcon },
+    { label: 'LinkedIn', href: safeUrl(settings.linkedin), Icon: LinkedInIcon },
+    { label: 'WhatsApp', href: wa ? `https://wa.me/${wa}` : '', Icon: WhatsAppIcon },
+    { label: 'Email', href: email ? `mailto:${email}` : '', Icon: Mail },
   ].filter((s) => s.href);
 
   const heading = 'mb-5 text-sm font-bold uppercase tracking-wider text-white';
@@ -53,7 +57,7 @@ export default function Footer({ settings, services, blurb }: { settings: SiteSe
             {[settings.phoneDisplay, settings.phone2Display].filter(Boolean).map((p) => (
               <li key={p}><a href={`tel:${p.replace(/[^\d+]/g, '')}`} className="flex items-center gap-3 hover:text-gold"><Phone className="size-4 text-gold" /> {p}</a></li>
             ))}
-            <li><a href={`mailto:${settings.email}`} className="flex items-center gap-3 break-all hover:text-gold"><Mail className="size-4 shrink-0 text-gold" /> {settings.email}</a></li>
+            {email && <li><a href={`mailto:${email}`} className="flex items-center gap-3 break-all hover:text-gold"><Mail className="size-4 shrink-0 text-gold" /> {email}</a></li>}
             <li className="flex items-start gap-3"><MapPin className="mt-0.5 size-4 shrink-0 text-gold" /> {settings.address}</li>
           </ul>
           <a href="#contact" className="btn-gold mt-7">Get a Quote <ArrowRight className="size-4" /></a>

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from './SiteImage';
 import { ArrowRight, Building2, Factory, Hammer, HardHat, Home, Paintbrush, PencilRuler, Route, Ruler, Settings2, Truck, Wrench, type LucideIcon } from 'lucide-react';
 import type { Service } from '@/types';
 import type { HomeContent } from '@/lib/home';

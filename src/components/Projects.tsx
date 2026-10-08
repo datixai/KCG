@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from './SiteImage';
 import { ArrowRight, MapPin } from 'lucide-react';
 import type { Project } from '@/types';
 import type { HomeContent } from '@/lib/home';

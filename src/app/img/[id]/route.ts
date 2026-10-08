@@ -5,6 +5,9 @@
 const PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
 const API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
 
+// Raster formats only — SVG can contain scripts, so it is never served from our domain
+const DATA_URL = /^data:(image\/(?:jpeg|png|webp|gif|avif));base64,([A-Za-z0-9+/=]+)$/;
+
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!/^[A-Za-z0-9_-]{1,64}$/.test(id)) return new Response('Not found', { status: 404 });
@@ -16,10 +19,16 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
   if (!res.ok) return new Response('Not found', { status: 404 });
 
   const doc = await res.json();
-  const match = String(doc?.fields?.data?.stringValue || '').match(/^data:(image\/[a-z+.-]+);base64,(.+)$/);
+  const match = String(doc?.fields?.data?.stringValue || '').match(DATA_URL);
   if (!match) return new Response('Not found', { status: 404 });
 
   return new Response(Buffer.from(match[2], 'base64'), {
-    headers: { 'Content-Type': match[1], 'Cache-Control': 'public, max-age=31536000, immutable' },
+    headers: {
+      'Content-Type': match[1],
+      'Cache-Control': 'public, max-age=31536000, immutable',
+      // Even if opened directly, the file can't run anything
+      'Content-Security-Policy': "default-src 'none'; sandbox",
+      'X-Content-Type-Options': 'nosniff',
+    },
   });
 }

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from './SiteImage';
 import { MapPin } from 'lucide-react';
 import { list, type HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';

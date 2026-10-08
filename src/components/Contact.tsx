@@ -3,13 +3,15 @@ import type { SiteSettings } from '@/types';
 import type { HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';
 import ContactForm from './ContactForm';
+import { safeEmail } from '@/lib/safe';
 
 export default function Contact({ settings, content }: { settings: SiteSettings; content: HomeContent['contact'] }) {
   const tel = (n: string) => `tel:${n.replace(/[^\d+]/g, '')}`;
+  const email = safeEmail(settings.email);
   const items = [
     { icon: Phone, label: 'Pakistan', value: settings.phoneDisplay, href: tel(settings.phoneDisplay) },
     ...(settings.phone2Display ? [{ icon: Phone, label: 'United Kingdom', value: settings.phone2Display, href: tel(settings.phone2Display) }] : []),
-    { icon: Mail, label: 'Email', value: settings.email, href: `mailto:${settings.email}` },
+    ...(email ? [{ icon: Mail, label: 'Email', value: email, href: `mailto:${email}` }] : []),
     { icon: MapPin, label: 'Head Office', value: settings.address },
   ];
   return (

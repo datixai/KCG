@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const input =
@@ -7,11 +7,19 @@ const input =
 
 export default function ContactForm({ title, text }: { title: string; text: string }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const startedAt = useRef(Date.now());
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    // Simple bot filter: a hidden field people never see, and forms filled in under 3 seconds.
+    // Bots get the normal thank-you screen but nothing is saved.
+    if (data.get('website') || Date.now() - startedAt.current < 3000) {
+      form.reset();
+      setStatus('sent');
+      return;
+    }
     setStatus('sending');
     try {
       // Firebase is loaded only when someone actually sends a message, keeping the page light
@@ -46,6 +54,7 @@ export default function ContactForm({ title, text }: { title: string; text: stri
       <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light" />
       <h3 className="font-display text-2xl font-bold uppercase text-forest-deep sm:col-span-2">{title}</h3>
       <p className="-mt-2 mb-2 text-sm text-charcoal/60 sm:col-span-2">{text}</p>
+      <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
       <input required name="name" maxLength={150} placeholder="Your Name" className={input} />
       <input required name="phone" type="tel" maxLength={30} placeholder="Phone / WhatsApp" className={input} />
       <textarea required name="message" rows={5} maxLength={4000} placeholder="Tell us about your project — location, type, size..." className={`${input} sm:col-span-2`} />

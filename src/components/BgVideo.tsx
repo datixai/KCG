@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { safeSrc } from '@/lib/safe';
 
 /**
  * Muted, looping background video. Plays only while on screen (saves battery and data),
@@ -22,10 +23,13 @@ export default function BgVideo({
     return () => io.disconnect();
   }, []);
 
+  const clean = safeSrc(src);
+  const cleanMobile = safeSrc(mobileSrc);
+  if (!clean) return null;
   return (
-    <video ref={ref} className={className} poster={poster} autoPlay muted loop playsInline preload="metadata" aria-hidden="true" {...rest}>
-      {mobileSrc && <source src={mobileSrc} type="video/mp4" media="(max-width: 767px)" />}
-      <source src={src} type="video/mp4" />
+    <video ref={ref} className={className} poster={safeSrc(poster) || undefined} autoPlay muted loop playsInline preload="metadata" aria-hidden="true" {...rest}>
+      {cleanMobile && <source src={cleanMobile} type="video/mp4" media="(max-width: 767px)" />}
+      <source src={clean} type="video/mp4" />
     </video>
   );
 }

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from './SiteImage';
 import { Clock, Coins, MountainSnow, ShieldCheck } from 'lucide-react';
 import type { HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';

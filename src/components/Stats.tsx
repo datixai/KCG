@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from './SiteImage';
 import type { HomeContent } from '@/lib/home';
 
 export default function Stats({ stats, background }: { stats: HomeContent['stats']; background: string }) {
