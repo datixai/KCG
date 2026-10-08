@@ -9,7 +9,8 @@ export const site = {
   owner: 'Akeeb Yakoob',
   phoneDisplay: '+92 345 5546831',
   whatsapp: '923455546831',
-  email: 'info@kashmirconstructiongroup.co.uk',
+  email: 'info@kashmirconstructiongroup.com',
+  url: 'https://kashmirconstructiongroup.com',
   address: 'Paagliyan, Dhangali, Kallar Syedan – Dadyal Rd, Dadyal, Azad Jammu Kashmir',
   social: {
     tiktok: 'https://www.tiktok.com/@kashmirconstructiongroup',

@@ -7,6 +7,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 const cinzel = Cinzel({ subsets: ['latin'], variable: '--font-cinzel', display: 'swap' });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  alternates: { canonical: '/' },
   title: { default: `${site.name} | Construction in Azad Kashmir`, template: `%s | ${site.short}` },
   description: site.description,
   icons: { icon: '/brand/logo.jpg', apple: '/brand/logo.jpg' },
