@@ -65,7 +65,6 @@ const groups: { title: string; fields: Field[] }[] = [
     { path: 'areas.headOffice', label: 'Head office town (highlighted)' },
     { path: 'areas.image', label: 'Photo', kind: 'image' },
   ] },
-  { title: 'Scrolling text band', fields: [{ path: 'marquee', label: 'Words (separate with commas)', kind: 'list' }] },
   { title: 'Why choose KCG', fields: [
     { path: 'why.eyebrow', label: 'Small heading' },
     { path: 'why.title', label: 'Title', kind: 'title' },

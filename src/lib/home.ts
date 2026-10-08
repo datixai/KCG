@@ -12,7 +12,6 @@ export interface HomeContent {
   services: { eyebrow: string; title: string; text: string };
   projects: { eyebrow: string; title: string };
   areas: { eyebrow: string; title: string; text: string; headOffice: string; list: string; image: string };
-  marquee: string;
   why: { eyebrow: string; title: string; image: string; reasons: { title: string; text: string }[] };
   gallery: { eyebrow: string; title: string; images: string[] };
   cta: { eyebrow: string; title: string; text: string; button: string; perks: string; video: string; poster: string };
@@ -71,7 +70,6 @@ export const defaultHome: HomeContent = {
     list: 'Dadyal, Mirpur, Chakswari, Kotli, Jhelum, Dina',
     image: '/images/site/plant-collage.webp',
   },
-  marquee: 'Residential, Commercial, Infrastructure, Concrete Batching, Renovations, Project Management, Design & Planning',
   why: {
     eyebrow: 'Why Choose KCG',
     title: 'Building\nMore Than\nStructures',
