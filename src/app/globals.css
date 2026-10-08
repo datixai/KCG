@@ -26,3 +26,11 @@ body { @apply bg-ink text-neutral-200 antialiased; }
     animation-range: entry 0% cover 25%;
   }
 }
+
+/* Admin panel form controls */
+@utility admin-input {
+  @apply w-full rounded-lg border border-white/10 bg-ink px-3 py-2.5 text-sm text-white outline-none placeholder:text-neutral-600 focus:border-brand-green;
+}
+@utility admin-btn {
+  @apply inline-flex items-center gap-2 rounded-full bg-brand-green px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-green-dark disabled:opacity-60;
+}

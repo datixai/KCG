@@ -2,12 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Cinzel } from 'next/font/google';
 import './globals.css';
 import { site } from '@/config/site';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import WhatsAppFloat from '@/components/WhatsAppFloat';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const cinzel = Cinzel({ subsets: ['latin'], variable: '--font-cinzel' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const cinzel = Cinzel({ subsets: ['latin'], variable: '--font-cinzel', display: 'swap' });
 
 export const metadata: Metadata = {
   title: { default: `${site.name} | Construction in Azad Kashmir`, template: `%s | ${site.short}` },
@@ -21,12 +18,7 @@ export const viewport: Viewport = { themeColor: '#0b0d0c', width: 'device-width'
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${cinzel.variable}`}>
-      <body>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <WhatsAppFloat />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

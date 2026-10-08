@@ -1,10 +1,9 @@
 import { MessageCircle } from 'lucide-react';
-import { site } from '@/config/site';
 
-export default function WhatsAppFloat() {
+export default function WhatsAppFloat({ whatsapp }: { whatsapp: string }) {
   return (
     <a
-      href={`https://wa.me/${site.whatsapp}`}
+      href={`https://wa.me/${whatsapp}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

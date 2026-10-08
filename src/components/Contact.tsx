@@ -1,12 +1,13 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { site } from '@/config/site';
+import type { SiteSettings } from '@/types';
 import { SectionTitle } from './Services';
+import ContactForm from './ContactForm';
 
-export default function Contact() {
+export default function Contact({ settings }: { settings: SiteSettings }) {
   const items = [
-    { icon: Phone, label: 'Call Us', value: site.phoneDisplay, href: `tel:${site.phoneDisplay.replace(/\s/g, '')}` },
-    { icon: Mail, label: 'Email', value: site.email, href: `mailto:${site.email}` },
-    { icon: MapPin, label: 'Location', value: site.address },
+    { icon: Phone, label: 'Call Us', value: settings.phoneDisplay, href: `tel:${settings.phoneDisplay.replace(/\s/g, '')}` },
+    { icon: Mail, label: 'Email', value: settings.email, href: `mailto:${settings.email}` },
+    { icon: MapPin, label: 'Location', value: settings.address },
   ];
   return (
     <section id="contact" className="py-20 sm:py-28">
@@ -24,17 +25,7 @@ export default function Contact() {
               </a>
             ))}
           </div>
-          {/* Opens WhatsApp with the message — no backend needed yet */}
-          <form action={`https://wa.me/${site.whatsapp}`} method="get" target="_blank" className="reveal grid gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 lg:col-span-3">
-            <textarea
-              required
-              name="text"
-              rows={6}
-              placeholder="Hi KCG, my name is ... I'd like a quote for ..."
-              className="rounded-xl border border-white/10 bg-ink px-4 py-3 text-white outline-none placeholder:text-neutral-500 focus:border-brand-green"
-            />
-            <button className="rounded-full bg-brand-green px-7 py-3.5 font-semibold text-white transition hover:bg-brand-green-dark">Send via WhatsApp</button>
-          </form>
+          <ContactForm />
         </div>
       </div>
     </section>
