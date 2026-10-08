@@ -8,7 +8,7 @@ export const site = {
   // Defaults until changed in admin Settings (from the KCG business card)
   owner: 'Akeeb Yakoob',
   phoneDisplay: '+92 345 5546831',
-  whatsapp: '923455546831',
+  whatsapp: '447440392017',
   email: 'info@kashmirconstructiongroup.com',
   url: 'https://kashmirconstructiongroup.com',
   address: 'Paagliyan, Dhangali, Kallar Syedan – Dadyal Rd, Dadyal, Azad Jammu Kashmir',

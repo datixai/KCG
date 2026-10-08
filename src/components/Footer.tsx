@@ -3,6 +3,7 @@ import { site } from '@/config/site';
 import type { Service, SiteSettings } from '@/types';
 import { FacebookIcon, InstagramIcon, LinkedInIcon, TikTokIcon, WhatsAppIcon, YouTubeIcon } from './BrandIcons';
 import Logo from './Logo';
+import { AjkFlag, UkFlag } from './Flags';
 
 export default function Footer({ settings, services, blurb }: { settings: SiteSettings; services: Service[]; blurb: string }) {
   const socials = [
@@ -60,11 +61,15 @@ export default function Footer({ settings, services, blurb }: { settings: SiteSe
       </div>
 
       <div className="relative mt-16 border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/50 sm:flex-row sm:px-6">
+        <div className="mx-auto grid max-w-7xl items-center justify-items-center gap-3 px-4 py-6 text-xs text-white/50 sm:grid-cols-3 sm:px-6 sm:[&>*:first-child]:justify-self-start sm:[&>*:last-child]:justify-self-end">
           <p>
             Designed &amp; Developed by{' '}
             <a href="https://datixai.com" target="_blank" rel="noopener" className="font-semibold text-gold transition hover:text-gold-light">Datix AI</a>
           </p>
+          <div className="flex items-center gap-2" aria-label="Azad Kashmir and United Kingdom">
+            <AjkFlag className="h-3.5 w-auto rounded-[2px] shadow-sm" />
+            <UkFlag className="h-3.5 w-auto rounded-[2px] shadow-sm" />
+          </div>
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
         </div>
       </div>
