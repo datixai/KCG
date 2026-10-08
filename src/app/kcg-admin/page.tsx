@@ -1,14 +1,18 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { collection, getCountFromServer, query, where } from 'firebase/firestore';
+import { collection, doc, getCountFromServer, query, serverTimestamp, where, writeBatch } from 'firebase/firestore';
+import toast from 'react-hot-toast';
 import { db } from '@/lib/firebase';
+import { defaultProjects, defaultServices } from '@/lib/defaults';
 import { ADMIN } from './AdminShell';
 
 export default function Dashboard() {
   const [counts, setCounts] = useState<Record<string, number | null>>({ projects: null, services: null, unread: null });
 
-  useEffect(() => {
+  const [seeding, setSeeding] = useState(false);
+
+  const loadCounts = useCallback(() => {
     const count = (q: Parameters<typeof getCountFromServer>[0]) => getCountFromServer(q).then((s) => s.data().count).catch(() => null);
     Promise.all([
       count(collection(db, 'projects')),
@@ -16,6 +20,34 @@ export default function Dashboard() {
       count(query(collection(db, 'messages'), where('read', '==', false))),
     ]).then(([projects, services, unread]) => setCounts({ projects, services, unread }));
   }, []);
+
+  useEffect(loadCounts, [loadCounts]);
+
+  /** Copies the built-in sample services/projects into Firestore so they can be edited. Skips non-empty collections. */
+  const seedDemo = async () => {
+    setSeeding(true);
+    try {
+      const batch = writeBatch(db);
+      let added = 0;
+      const seed = async (name: string, items: { id: string }[]) => {
+        if ((await getCountFromServer(collection(db, name))).data().count > 0) return;
+        items.forEach(({ id: _id, ...item }, i) => {
+          batch.set(doc(collection(db, name)), { ...item, order: i + 1, createdAt: serverTimestamp() });
+          added++;
+        });
+      };
+      await seed('services', defaultServices.map((s) => ({ ...s, active: true })));
+      await seed('projects', defaultProjects.map((p) => ({ ...p, image: '', description: '' })));
+      if (!added) return toast('Projects and services already have content — nothing added.');
+      await batch.commit();
+      toast.success(`Added ${added} demo items`);
+      loadCounts();
+    } catch (err) {
+      toast.error((err as Error).message);
+    } finally {
+      setSeeding(false);
+    }
+  };
 
   const cards = [
     { label: 'Projects', value: counts.projects, href: `${ADMIN}/projects` },
@@ -37,6 +69,11 @@ export default function Dashboard() {
       <p className="mt-8 text-sm text-neutral-500">
         Until you add projects or services here, the website shows built-in sample content. Changes appear on the live site within about a minute.
       </p>
+      {(counts.projects === 0 || counts.services === 0) && (
+        <button onClick={seedDemo} disabled={seeding} className="admin-btn mt-4">
+          {seeding ? 'Loading…' : 'Load demo projects & services'}
+        </button>
+      )}
     </div>
   );
 }

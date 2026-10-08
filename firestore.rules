@@ -3,10 +3,11 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Only this Firebase Auth user can edit content from the admin panel.
-    // Replace with your admin UID: Firebase Console > Authentication > Users > User UID.
+    // Only this Firebase Auth account can edit content from the admin panel.
+    // Firebase allows one account per email, and public sign-up should be turned off
+    // (Authentication > Settings > User actions > uncheck "Enable create (sign-up)").
     function isAdmin() {
-      return request.auth != null && request.auth.uid == 'PASTE_ADMIN_UID_HERE';
+      return request.auth != null && request.auth.token.email == 'datixai.com@gmail.com';
     }
 
     // ── Public read, admin write ──
