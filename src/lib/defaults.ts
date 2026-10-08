@@ -19,10 +19,10 @@ export const defaultServices: Service[] = [
 ];
 
 export const defaultProjects: Project[] = [
-  { id: 'd1', title: 'Modern Family Villa', location: 'Mirpur', category: 'Residential' },
-  { id: 'd2', title: 'Commercial Plaza', location: 'Kotli', category: 'Commercial' },
-  { id: 'd3', title: 'Hillside Residence', location: 'Muzaffarabad', category: 'Residential' },
-  { id: 'd4', title: 'Office Complex', location: 'Bhimber', category: 'Commercial' },
-  { id: 'd5', title: 'Road & Retaining Wall', location: 'Rawalakot', category: 'Infrastructure' },
-  { id: 'd6', title: 'Home Renovation', location: 'Bagh', category: 'Renovation' },
+  { id: 'd1', title: 'Modern Family Villa', location: 'Mirpur', category: 'Residential', image: '/images/projects/modern-villa.webp' },
+  { id: 'd2', title: 'Commercial Plaza', location: 'Kotli', category: 'Commercial', image: '/images/projects/commercial-plaza.webp' },
+  { id: 'd3', title: 'Luxury Residence', location: 'Muzaffarabad', category: 'Residential', image: '/images/projects/luxury-residence.webp' },
+  { id: 'd4', title: 'Office Building', location: 'Bhimber', category: 'Commercial', image: '/images/projects/office-building.webp' },
+  { id: 'd5', title: 'Grey Structure Villa', location: 'Rawalakot', category: 'Residential', image: '/images/projects/grey-structure.webp' },
+  { id: 'd6', title: 'Interior Renovation', location: 'Bagh', category: 'Renovation', image: '/images/projects/interior-renovation.webp' },
 ];

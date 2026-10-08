@@ -37,7 +37,7 @@ export default function Dashboard() {
         });
       };
       await seed('services', defaultServices.map((s) => ({ ...s, active: true })));
-      await seed('projects', defaultProjects.map((p) => ({ ...p, image: '', description: '' })));
+      await seed('projects', defaultProjects.map((p) => ({ ...p, description: '' })));
       if (!added) return toast('Projects and services already have content — nothing added.');
       await batch.commit();
       toast.success(`Added ${added} demo items`);

@@ -6,6 +6,8 @@ export default function Hero() {
   const [first, second] = site.tagline.split(',');
   return (
     <section className="relative flex min-h-svh items-center overflow-hidden pt-20">
+      <Image src="/images/projects/hero-site.webp" alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/60 to-ink" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(31,138,76,0.25),transparent_60%),radial-gradient(ellipse_at_bottom_left,rgba(243,154,43,0.12),transparent_55%)]" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2">
         <div className="animate-fade-up text-center lg:text-left">
