@@ -3,11 +3,15 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Only this Firebase Auth account can edit content from the admin panel.
+    // Only these Firebase Auth accounts can edit content from the admin panel.
     // Firebase allows one account per email, and public sign-up should be turned off
     // (Authentication > Settings > User actions > uncheck "Enable create (sign-up)").
+    // To add or remove an admin, edit this list and publish the rules in Firebase Console.
     function isAdmin() {
-      return request.auth != null && request.auth.token.email == 'datixai.com@gmail.com';
+      return request.auth != null && request.auth.token.email in [
+        'datixai.com@gmail.com',
+        'info@kashmirconstructiongroup.com'
+      ];
     }
 
     // ── Public read, admin write ──
