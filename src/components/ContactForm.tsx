@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 const input =
   'w-full rounded-sm border border-forest/15 bg-cream/60 px-4 py-3.5 text-forest-deep outline-none transition placeholder:text-charcoal/40 focus:border-gold focus:bg-white';
 
-export default function ContactForm() {
+export default function ContactForm({ title, text }: { title: string; text: string }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -44,8 +44,8 @@ export default function ContactForm() {
   return (
     <form onSubmit={onSubmit} className="relative grid gap-4 overflow-hidden rounded-sm bg-white p-6 shadow-2xl shadow-forest-deep/10 sm:grid-cols-2 sm:p-10">
       <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light" />
-      <h3 className="font-display text-2xl font-bold uppercase text-forest-deep sm:col-span-2">Request a Free Quote</h3>
-      <p className="-mt-2 mb-2 text-sm text-charcoal/60 sm:col-span-2">Fill in your details and our team will get back to you.</p>
+      <h3 className="font-display text-2xl font-bold uppercase text-forest-deep sm:col-span-2">{title}</h3>
+      <p className="-mt-2 mb-2 text-sm text-charcoal/60 sm:col-span-2">{text}</p>
       <input required name="name" maxLength={150} placeholder="Your Name" className={input} />
       <input required name="phone" type="tel" maxLength={30} placeholder="Phone / WhatsApp" className={input} />
       <textarea required name="message" rows={5} maxLength={4000} placeholder="Tell us about your project — location, type, size..." className={`${input} sm:col-span-2`} />

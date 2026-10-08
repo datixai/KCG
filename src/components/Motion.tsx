@@ -11,7 +11,6 @@ import { useEffect } from 'react';
  *   data-parallax  moves slower than the page (data-speed, default 12)
  *   data-count     number counts up to its value (data-suffix e.g. "+")
  *   data-stripe    gold stripe grows in
- *   data-hscroll   section pins and its [data-hscroll-track] scrolls sideways (desktop)
  * GSAP + Lenis load after the page is interactive, and nothing runs for
  * visitors who prefer reduced motion.
  */
@@ -88,20 +87,9 @@ export default function Motion() {
             scrollTrigger: { trigger: el, start: 'top 90%' },
           }));
 
-        gsap.matchMedia().add('(min-width: 1024px)', () => {
-          all('[data-hscroll]').forEach((section) => {
-            const track = section.querySelector<HTMLElement>('[data-hscroll-track]');
-            if (!track) return;
-            const distance = () => Math.max(0, track.scrollWidth - track.clientWidth);
-            gsap.to(track, {
-              x: () => -distance(), ease: 'none',
-              scrollTrigger: { trigger: section, pin: true, scrub: 1, start: 'top top', end: () => `+=${distance()}`, invalidateOnRefresh: true },
-            });
-          });
-        });
       });
 
-      // Images load after layout; re-measure so pinned sections get the right length
+      // Images load after layout; re-measure trigger positions
       window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
 
       cleanup = () => {

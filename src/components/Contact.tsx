@@ -1,9 +1,10 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import type { SiteSettings } from '@/types';
+import type { HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';
 import ContactForm from './ContactForm';
 
-export default function Contact({ settings }: { settings: SiteSettings }) {
+export default function Contact({ settings, content }: { settings: SiteSettings; content: HomeContent['contact'] }) {
   const tel = (n: string) => `tel:${n.replace(/[^\d+]/g, '')}`;
   const items = [
     { icon: Phone, label: 'Pakistan', value: settings.phoneDisplay, href: tel(settings.phoneDisplay) },
@@ -15,7 +16,7 @@ export default function Contact({ settings }: { settings: SiteSettings }) {
     <section id="contact" className="relative overflow-hidden bg-cream py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <SectionTitle eyebrow="Get In Touch" lines={['Start Your', 'Project']} />
+          <SectionTitle eyebrow={content.eyebrow} title={content.title} />
           <ul data-stagger className="mt-10 space-y-3">
             {items.map(({ icon: Icon, label, value, href }) => {
               const body = (
@@ -35,7 +36,7 @@ export default function Contact({ settings }: { settings: SiteSettings }) {
             })}
           </ul>
         </div>
-        <div data-reveal className="lg:col-span-3"><ContactForm /></div>
+        <div data-reveal className="lg:col-span-3"><ContactForm title={content.formTitle} text={content.formText} /></div>
       </div>
     </section>
   );

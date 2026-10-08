@@ -1,23 +1,21 @@
 import Image from 'next/image';
-import { ArrowRight, Building2, Hammer, HardHat, Home, Paintbrush, PencilRuler, Route, Ruler, Settings2, Truck, Wrench, type LucideIcon } from 'lucide-react';
+import { ArrowRight, Building2, Factory, Hammer, HardHat, Home, Paintbrush, PencilRuler, Route, Ruler, Settings2, Truck, Wrench, type LucideIcon } from 'lucide-react';
 import type { Service } from '@/types';
+import type { HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';
 
 // Icon names the admin panel can choose from
 export const serviceIcons: Record<string, LucideIcon> = {
-  Home, Building2, Route, Hammer, Settings2, PencilRuler, HardHat, Ruler, Paintbrush, Truck, Wrench,
+  Home, Building2, Route, Hammer, Settings2, PencilRuler, Factory, HardHat, Ruler, Paintbrush, Truck, Wrench,
 };
 
-export default function Services({ services }: { services: Service[] }) {
+export default function Services({ services, content }: { services: Service[]; content: HomeContent['services'] }) {
   return (
     <section id="services" className="relative overflow-hidden bg-cream-dark/60 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid items-end gap-8 lg:grid-cols-2">
-          <SectionTitle eyebrow="Our Services" lines={['Complete Construction', 'Solutions']} />
-          <p data-reveal className="max-w-md text-base leading-relaxed text-charcoal/70 lg:justify-self-end">
-            From residential developments to large-scale infrastructure, KCG provides reliable and professional
-            construction services tailored to your needs.
-          </p>
+          <SectionTitle eyebrow={content.eyebrow} title={content.title} />
+          <p data-reveal className="max-w-md text-base leading-relaxed text-charcoal/70 lg:justify-self-end">{content.text}</p>
         </div>
 
         <div data-stagger className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

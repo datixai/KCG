@@ -4,7 +4,7 @@ import type { Service, SiteSettings } from '@/types';
 import { FacebookIcon, InstagramIcon, LinkedInIcon, TikTokIcon, WhatsAppIcon, YouTubeIcon } from './BrandIcons';
 import Logo from './Logo';
 
-export default function Footer({ settings, services }: { settings: SiteSettings; services: Service[] }) {
+export default function Footer({ settings, services, blurb }: { settings: SiteSettings; services: Service[]; blurb: string }) {
   const socials = [
     { label: 'Facebook', href: settings.facebook, Icon: FacebookIcon },
     { label: 'Instagram', href: settings.instagram, Icon: InstagramIcon },
@@ -24,7 +24,7 @@ export default function Footer({ settings, services }: { settings: SiteSettings;
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1.2fr_1.4fr]">
         <div>
           <Logo />
-          <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/65">Building homes, businesses and stronger communities across Kashmir.</p>
+          <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/65">{blurb}</p>
           <div className="mt-6 flex flex-wrap gap-2.5">
             {socials.map(({ label, href, Icon }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}

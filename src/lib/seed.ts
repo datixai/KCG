@@ -3,7 +3,7 @@ import { db } from './firebase';
 import { defaultProjects, defaultServices } from './defaults';
 
 // Bump when the built-in content changes; unedited earlier imports get replaced
-const SEED_VERSION = 2;
+const SEED_VERSION = 3;
 
 /**
  * The public site shows built-in projects/services while Firestore is empty.
