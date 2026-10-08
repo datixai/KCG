@@ -48,7 +48,7 @@ export default async function TownPage({ params }: Props) {
           <nav aria-label="Breadcrumb" className="mb-6 text-xs uppercase tracking-[0.2em] text-white/60">
             <a href="/" className="hover:text-gold">Home</a> <span className="mx-2">/</span> <span className="text-gold">{t.name}</span>
           </nav>
-          <h1 className="font-display text-4xl font-bold uppercase leading-[1.02] sm:text-6xl">
+          <h1 className="font-display text-[clamp(1.75rem,9.5vw,2.25rem)] font-bold uppercase leading-[1.02] sm:text-6xl">
             Construction Company<span className="block text-gold">in {t.name}</span>
           </h1>
           <p className="mt-6 flex items-center gap-2 text-sm text-white/70"><MapPin className="size-4 text-gold" /> {t.name}, {t.region}</p>

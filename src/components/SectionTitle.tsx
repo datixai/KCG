@@ -11,7 +11,7 @@ export default function SectionTitle({
   return (
     <div className={`${center ? 'text-center' : ''} ${className}`}>
       {eyebrow && <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.3em] ${dark ? 'text-gold' : 'text-gold-deep'}`}>{eyebrow}</p>}
-      <h2 data-lines className={`font-display text-4xl font-bold uppercase leading-[1.02] sm:text-5xl lg:text-6xl ${dark ? 'text-white' : 'text-forest-deep'}`}>
+      <h2 data-lines className={`font-display text-[clamp(1.75rem,9.5vw,2.25rem)] font-bold uppercase leading-[1.02] sm:text-5xl lg:text-6xl ${dark ? 'text-white' : 'text-forest-deep'}`}>
         {lines.map((l, i) => (
           <span key={`${l}-${i}`} className="line">
             <span className={i === lines.length - 1 ? 'text-gold' : ''}>{l}</span>
