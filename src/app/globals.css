@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand-green: #1f8a4c;
+  --color-brand-green-dark: #146236;
+  --color-brand-orange: #f39a2b;
+  --color-ink: #0b0d0c;
+  --color-ink-soft: #151917;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-cinzel), Georgia, serif;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { @apply bg-ink text-neutral-200 antialiased; }
+
+/* Scroll-driven reveal (progressive enhancement, no JS) */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+}
