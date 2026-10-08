@@ -69,7 +69,7 @@ export const defaultHome: HomeContent = {
     text: 'From our base in Dadyal we deliver projects across Azad Kashmir and neighbouring Punjab — and we are growing into new regions every year.',
     headOffice: 'Dadyal',
     list: 'Dadyal, Mirpur, Chakswari, Kotli, Jhelum, Dina',
-    image: '/images/site/valley-view.webp',
+    image: '/images/site/plant-collage.webp',
   },
   marquee: 'Residential, Commercial, Infrastructure, Concrete Batching, Renovations, Project Management, Design & Planning',
   why: {

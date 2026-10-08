@@ -25,8 +25,8 @@ export default function Areas({ content }: { content: HomeContent['areas'] }) {
           </ul>
         </div>
         {content.image && (
-          <div data-curtain className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-2xl shadow-forest-deep/20">
-            <Image src={content.image} alt="The region KCG serves" fill sizes="(min-width: 1024px) 45vw, 100vw" data-parallax data-speed="6" className="scale-110 object-cover" />
+          <div data-curtain className="relative aspect-[3/2] overflow-hidden rounded-sm shadow-2xl shadow-forest-deep/20">
+            <Image src={content.image} alt="The region KCG serves" fill sizes="(min-width: 1024px) 45vw, 100vw" data-parallax data-speed="3" className="scale-105 object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/70 to-transparent" />
             <p className="absolute bottom-6 left-6 font-display text-2xl font-bold uppercase text-white">{towns.length} Towns<span className="block text-gold">& Growing</span></p>
           </div>
