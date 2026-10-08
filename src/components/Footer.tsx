@@ -15,6 +15,12 @@ export default function Footer() {
         </div>
         <p className="text-xs text-neutral-500">© {new Date().getFullYear()} {site.short}. All rights reserved.</p>
       </div>
+      <div className="mx-auto mt-8 max-w-7xl border-t border-white/5 px-4 pt-6 text-center text-xs text-neutral-500 sm:px-6">
+        Designed &amp; Developed by{' '}
+        <a href="https://datixai.com" target="_blank" rel="noopener" className="font-semibold text-brand-orange transition hover:text-brand-green">
+          Datix AI
+        </a>
+      </div>
     </footer>
   );
 }
