@@ -7,7 +7,7 @@ export default function Hero({ content }: { content: HomeContent['hero'] }) {
   const [town, region] = content.location.split(',').map((s) => s.trim());
 
   return (
-    <section id="top" className="relative flex h-[88svh] min-h-[560px] max-h-[940px] items-center overflow-hidden bg-forest-deep">
+    <section id="top" className="relative flex min-h-[88svh] items-center overflow-hidden bg-forest-deep">
       {/* Drone footage of the KCG site */}
       <BgVideo src={content.video} mobileSrc={content.videoMobile} poster={content.poster} className="absolute inset-0 size-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/95 via-forest-deep/65 to-forest-deep/10" />
@@ -17,10 +17,11 @@ export default function Hero({ content }: { content: HomeContent['hero'] }) {
       <div className="stripe -top-20 left-[64%] hidden h-[140%] w-3 rotate-[24deg] opacity-90 lg:block" />
       <div className="stripe -top-20 left-[67%] hidden h-[140%] w-1 rotate-[24deg] opacity-50 lg:block" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6">
+      {/* Top padding keeps the content clear of the fixed nav bar */}
+      <div className="relative mx-auto w-full max-w-7xl px-4 pb-20 pt-32 sm:px-6 lg:pb-24 lg:pt-36">
         <div className="max-w-3xl">
           <p className="animate-fade-up mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-gold sm:text-sm">{content.eyebrow}</p>
-          <h1 className="font-display text-[2.5rem] font-bold uppercase leading-[0.95] text-white sm:text-6xl lg:text-[5rem]">
+          <h1 className="font-display text-[2.5rem] font-bold uppercase leading-[0.95] text-white sm:text-6xl lg:text-[clamp(3rem,9vh,5rem)]">
             {lines.map((l, i) => (
               <span key={`${l}-${i}`} className="line hero-line" style={{ '--i': i } as React.CSSProperties}>
                 <span className={i === lines.length - 1 ? 'text-gold' : ''}>{l}</span>
