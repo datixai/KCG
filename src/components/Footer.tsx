@@ -1,44 +1,71 @@
-import Image from 'next/image';
-import { Mail } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
 import { site } from '@/config/site';
-import type { SiteSettings } from '@/types';
-import { TikTokIcon, WhatsAppIcon } from './BrandIcons';
+import type { Service, SiteSettings } from '@/types';
+import { FacebookIcon, InstagramIcon, LinkedInIcon, TikTokIcon, WhatsAppIcon, YouTubeIcon } from './BrandIcons';
+import Logo from './Logo';
 
-export default function Footer({ settings }: { settings: SiteSettings }) {
+export default function Footer({ settings, services }: { settings: SiteSettings; services: Service[] }) {
   const socials = [
-    { label: 'Email', href: `mailto:${settings.email}`, icon: <Mail className="size-4" />, hover: 'hover:bg-brand-orange' },
-    { label: 'WhatsApp', href: `https://wa.me/${settings.whatsapp}`, icon: <WhatsAppIcon className="size-4" />, hover: 'hover:bg-[#25D366]' },
-    { label: 'TikTok', href: site.social.tiktok, icon: <TikTokIcon className="size-4" />, hover: 'hover:bg-white hover:text-black' },
-  ];
+    { label: 'Facebook', href: settings.facebook, Icon: FacebookIcon },
+    { label: 'Instagram', href: settings.instagram, Icon: InstagramIcon },
+    { label: 'TikTok', href: settings.tiktok, Icon: TikTokIcon },
+    { label: 'YouTube', href: settings.youtube, Icon: YouTubeIcon },
+    { label: 'LinkedIn', href: settings.linkedin, Icon: LinkedInIcon },
+    { label: 'WhatsApp', href: `https://wa.me/${settings.whatsapp}`, Icon: WhatsAppIcon },
+    { label: 'Email', href: `mailto:${settings.email}`, Icon: Mail },
+  ].filter((s) => s.href);
+
+  const heading = 'mb-5 text-sm font-bold uppercase tracking-wider text-white';
+  const link = 'text-sm text-white/65 transition hover:translate-x-1 hover:text-gold inline-block';
+
   return (
-    <footer className="border-t border-white/10 bg-black py-10">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 text-center sm:flex-row sm:justify-between sm:px-6 sm:text-left">
-        <div className="flex items-center gap-3">
-          <Image src="/brand/logo-mark.png" alt="" width={36} height={43} className="h-10 w-auto" />
-          <span className="font-display tracking-wider text-white">{site.name}</span>
+    <footer className="relative overflow-hidden bg-forest-deep pt-20 text-white">
+      <div className="stripe -right-16 top-0 h-full w-6 rotate-[18deg] opacity-20" />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1.2fr_1.4fr]">
+        <div>
+          <Logo />
+          <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/65">Building homes, businesses and stronger communities across Kashmir.</p>
+          <div className="mt-6 flex flex-wrap gap-2.5">
+            {socials.map(({ label, href, Icon }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}
+                className="grid size-10 place-items-center rounded-full border border-white/15 text-white/80 transition hover:-translate-y-1 hover:border-gold hover:bg-gold hover:text-forest-deep">
+                <Icon className="size-4" />
+              </a>
+            ))}
+          </div>
         </div>
-        <div className="flex gap-3">
-          {socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={s.label}
-              title={s.label}
-              className={`grid size-9 place-items-center rounded-full border border-white/15 text-neutral-300 transition hover:border-transparent hover:text-white ${s.hover}`}
-            >
-              {s.icon}
-            </a>
-          ))}
+
+        <div>
+          <h3 className={heading}>Quick Links</h3>
+          <ul className="space-y-3">{site.nav.map((n) => <li key={n.href}><a href={n.href} className={link}>{n.label}</a></li>)}</ul>
         </div>
-        <p className="text-xs text-neutral-500">© {new Date().getFullYear()} {site.short}. All rights reserved.</p>
+
+        <div>
+          <h3 className={heading}>Our Services</h3>
+          <ul className="space-y-3">{services.map((s) => <li key={s.id}><a href="#services" className={link}>{s.title}</a></li>)}</ul>
+        </div>
+
+        <div>
+          <h3 className={heading}>Contact Us</h3>
+          <ul className="space-y-3.5 text-sm text-white/70">
+            {[settings.phoneDisplay, settings.phone2Display].filter(Boolean).map((p) => (
+              <li key={p}><a href={`tel:${p.replace(/[^\d+]/g, '')}`} className="flex items-center gap-3 hover:text-gold"><Phone className="size-4 text-gold" /> {p}</a></li>
+            ))}
+            <li><a href={`mailto:${settings.email}`} className="flex items-center gap-3 break-all hover:text-gold"><Mail className="size-4 shrink-0 text-gold" /> {settings.email}</a></li>
+            <li className="flex items-start gap-3"><MapPin className="mt-0.5 size-4 shrink-0 text-gold" /> {settings.address}</li>
+          </ul>
+          <a href="#contact" className="btn-gold mt-7">Get a Quote <ArrowRight className="size-4" /></a>
+        </div>
       </div>
-      <div className="mx-auto mt-8 max-w-7xl border-t border-white/5 px-4 pt-6 text-center text-xs text-neutral-500 sm:px-6">
-        Designed &amp; Developed by{' '}
-        <a href="https://datixai.com" target="_blank" rel="noopener" className="font-semibold text-brand-orange transition hover:text-brand-green">
-          Datix AI
-        </a>
+
+      <div className="relative mt-16 border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/50 sm:flex-row sm:px-6">
+          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+          <p>
+            Designed &amp; Developed by{' '}
+            <a href="https://datixai.com" target="_blank" rel="noopener" className="font-semibold text-gold transition hover:text-gold-light">Datix AI</a>
+          </p>
+        </div>
       </div>
     </footer>
   );

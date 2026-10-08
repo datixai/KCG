@@ -85,7 +85,7 @@ export default function CollectionManager({
             return (
               <li key={row.id} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-3 sm:p-4">
                 {d.image !== undefined && (
-                  <div className="size-14 shrink-0 overflow-hidden rounded-lg bg-ink">
+                  <div className="size-14 shrink-0 overflow-hidden rounded-lg bg-forest-deep">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     {d.image && <img src={d.image} alt="" className="size-full object-cover" />}
                   </div>
@@ -94,7 +94,7 @@ export default function CollectionManager({
                   <div className="truncate font-medium text-white">{d.primary}</div>
                   {d.secondary && <div className="truncate text-sm text-neutral-500">{d.secondary}</div>}
                 </div>
-                <button onClick={() => setEditing(row)} className="p-2 text-neutral-400 hover:text-brand-orange" aria-label="Edit"><Pencil className="size-4" /></button>
+                <button onClick={() => setEditing(row)} className="p-2 text-neutral-400 hover:text-gold" aria-label="Edit"><Pencil className="size-4" /></button>
                 <button onClick={() => remove(row)} className="p-2 text-neutral-400 hover:text-red-400" aria-label="Delete"><Trash2 className="size-4" /></button>
               </li>
             );
@@ -104,7 +104,7 @@ export default function CollectionManager({
 
       {editing && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-0 backdrop-blur-sm sm:items-center sm:p-4">
-          <form onSubmit={save} className="max-h-[92svh] w-full max-w-lg space-y-4 overflow-y-auto rounded-t-2xl border border-white/10 bg-ink-soft p-6 sm:rounded-2xl">
+          <form onSubmit={save} className="max-h-[92svh] w-full max-w-lg space-y-4 overflow-y-auto rounded-t-2xl border border-white/10 bg-forest p-6 sm:rounded-2xl">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-semibold text-white">{editing.id ? 'Edit' : 'Add'} {title.replace(/s$/, '')}</h2>
               <button type="button" onClick={() => setEditing(null)} className="p-1 text-neutral-400 hover:text-white"><X className="size-5" /></button>
@@ -121,7 +121,7 @@ export default function CollectionManager({
                     {f.options.map((o) => <option key={o} value={o}>{o}</option>)}
                   </select>
                 ) : f.type === 'checkbox' ? (
-                  <input type="checkbox" checked={editing[f.name] !== false} onChange={(e) => set(f.name, e.target.checked)} className="size-4 accent-brand-green" />
+                  <input type="checkbox" checked={editing[f.name] !== false} onChange={(e) => set(f.name, e.target.checked)} className="size-4 accent-gold" />
                 ) : (
                   <input
                     type={f.type}

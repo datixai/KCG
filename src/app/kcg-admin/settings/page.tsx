@@ -7,11 +7,17 @@ import { friendlyError } from '@/lib/errors';
 import { defaultSettings } from '@/lib/defaults';
 import type { SiteSettings } from '@/types';
 
-const fields: { name: keyof SiteSettings; label: string }[] = [
-  { name: 'phoneDisplay', label: 'Phone (as shown on site)' },
+const fields: { name: keyof SiteSettings; label: string; optional?: boolean }[] = [
+  { name: 'phoneDisplay', label: 'Pakistan phone (as shown on site)' },
+  { name: 'phone2Display', label: 'UK phone (leave empty to hide)', optional: true },
   { name: 'whatsapp', label: 'WhatsApp number (digits only, e.g. 923001234567)' },
   { name: 'email', label: 'Email' },
   { name: 'address', label: 'Address' },
+  { name: 'facebook', label: 'Facebook page link (optional)', optional: true },
+  { name: 'instagram', label: 'Instagram link (optional)', optional: true },
+  { name: 'tiktok', label: 'TikTok link (optional)', optional: true },
+  { name: 'youtube', label: 'YouTube link (optional)', optional: true },
+  { name: 'linkedin', label: 'LinkedIn link (optional)', optional: true },
 ];
 
 export default function SettingsAdmin() {
@@ -48,7 +54,7 @@ export default function SettingsAdmin() {
           {fields.map((f) => (
             <label key={f.name} className="block space-y-1.5">
               <span className="text-sm text-neutral-400">{f.label}</span>
-              <input required value={settings[f.name]} onChange={(e) => setSettings({ ...settings, [f.name]: e.target.value })} className="admin-input" />
+              <input required={!f.optional} value={settings[f.name] ?? ""} onChange={(e) => setSettings({ ...settings, [f.name]: e.target.value })} className="admin-input" />
             </label>
           ))}
           <button disabled={saving} className="admin-btn">{saving ? 'Saving…' : 'Save'}</button>

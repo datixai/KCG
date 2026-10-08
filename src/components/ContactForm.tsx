@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const input =
-  'rounded-xl border border-white/10 bg-ink px-4 py-3 text-white outline-none placeholder:text-neutral-500 focus:border-brand-green';
+  'w-full rounded-sm border border-forest/15 bg-cream/60 px-4 py-3.5 text-forest-deep outline-none transition placeholder:text-charcoal/40 focus:border-gold focus:bg-white';
 
 export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
@@ -33,21 +33,25 @@ export default function ContactForm() {
 
   if (status === 'sent')
     return (
-      <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-brand-green/40 bg-brand-green/10 p-10 text-center lg:col-span-3">
-        <CheckCircle2 className="size-10 text-brand-green" />
-        <p className="text-lg font-semibold text-white">Thank you! We&apos;ll contact you shortly.</p>
-        <button onClick={() => setStatus('idle')} className="text-sm text-brand-orange hover:underline">Send another message</button>
+      <div className="flex h-full flex-col items-center justify-center gap-4 rounded-sm bg-forest p-12 text-center shadow-2xl shadow-forest-deep/20">
+        <CheckCircle2 className="size-14 text-gold" />
+        <p className="font-display text-2xl font-bold text-white">Thank You!</p>
+        <p className="text-white/70">We&apos;ve received your message and will contact you shortly.</p>
+        <button onClick={() => setStatus('idle')} className="mt-2 text-sm font-semibold text-gold hover:underline">Send another message</button>
       </div>
     );
 
   return (
-    <form onSubmit={onSubmit} className="reveal grid gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:grid-cols-2 sm:p-8 lg:col-span-3">
+    <form onSubmit={onSubmit} className="relative grid gap-4 overflow-hidden rounded-sm bg-white p-6 shadow-2xl shadow-forest-deep/10 sm:grid-cols-2 sm:p-10">
+      <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light" />
+      <h3 className="font-display text-2xl font-bold uppercase text-forest-deep sm:col-span-2">Request a Free Quote</h3>
+      <p className="-mt-2 mb-2 text-sm text-charcoal/60 sm:col-span-2">Fill in your details and our team will get back to you.</p>
       <input required name="name" maxLength={150} placeholder="Your Name" className={input} />
-      <input required name="phone" type="tel" maxLength={30} placeholder="Phone Number" className={input} />
-      <textarea required name="message" rows={5} maxLength={4000} placeholder="Tell us about your project..." className={`${input} sm:col-span-2`} />
-      {status === 'error' && <p className="text-sm text-red-400 sm:col-span-2">Could not send your message. Please try WhatsApp or call us.</p>}
-      <button disabled={status === 'sending'} className="rounded-full bg-brand-green px-7 py-3.5 font-semibold text-white transition hover:bg-brand-green-dark disabled:opacity-60 sm:col-span-2">
-        {status === 'sending' ? 'Sending…' : 'Send Message'}
+      <input required name="phone" type="tel" maxLength={30} placeholder="Phone / WhatsApp" className={input} />
+      <textarea required name="message" rows={5} maxLength={4000} placeholder="Tell us about your project — location, type, size..." className={`${input} sm:col-span-2`} />
+      {status === 'error' && <p className="text-sm text-red-600 sm:col-span-2">Could not send your message. Please try WhatsApp or call us.</p>}
+      <button disabled={status === 'sending'} className="btn-gold disabled:opacity-60 sm:col-span-2">
+        {status === 'sending' ? 'Sending…' : <>Send Message <ArrowRight className="size-4" /></>}
       </button>
     </form>
   );

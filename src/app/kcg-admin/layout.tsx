@@ -12,8 +12,10 @@ export const metadata: Metadata = {
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <AuthProvider>
-      <AdminShell>{children}</AdminShell>
-      <Toaster position="top-center" toastOptions={{ style: { background: '#151917', color: '#fff', border: '1px solid rgba(255,255,255,.1)' } }} />
+      <div className="min-h-svh bg-forest-deep text-neutral-200">
+        <AdminShell>{children}</AdminShell>
+      </div>
+      <Toaster position="top-center" toastOptions={{ style: { background: '#0f3b2c', color: '#fff', border: '1px solid rgba(255,255,255,.1)' } }} />
     </AuthProvider>
   );
 }

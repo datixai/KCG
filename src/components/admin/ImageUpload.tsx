@@ -25,13 +25,13 @@ export default function ImageUpload({ value, onChange }: { value: string; onChan
 
   return (
     <div className="flex items-start gap-4">
-      <div className="grid size-20 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-ink">
+      <div className="grid size-20 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-forest-deep">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {value ? <img src={value} alt="" className="size-full object-cover" /> : <span className="text-[10px] text-neutral-600">No photo</span>}
       </div>
       <div className="min-w-0 flex-1 space-y-2">
         <div className="flex flex-wrap gap-2">
-          <button type="button" onClick={() => fileRef.current?.click()} disabled={uploading} className="rounded-lg border border-brand-green/40 bg-brand-green/10 px-3 py-1.5 text-xs text-brand-green hover:bg-brand-green/20 disabled:opacity-50">
+          <button type="button" onClick={() => fileRef.current?.click()} disabled={uploading} className="rounded-lg border border-gold/40 bg-gold/10 px-3 py-1.5 text-xs text-gold hover:bg-gold/20 disabled:opacity-50">
             {uploading ? 'Uploading…' : value ? 'Change photo' : 'Upload photo'}
           </button>
           {value && (

@@ -27,9 +27,9 @@ export default function LoginPage() {
 
   return (
     <div className="grid min-h-svh place-items-center p-4">
-      <form onSubmit={onSubmit} className="w-full max-w-sm space-y-4 rounded-2xl border border-white/10 bg-ink-soft p-8">
+      <form onSubmit={onSubmit} className="w-full max-w-sm space-y-4 rounded-2xl border border-white/10 bg-forest p-8">
         <div className="mb-2 flex flex-col items-center gap-3">
-          <Image src="/brand/logo.jpg" alt="KCG" width={72} height={72} className="rounded-full" priority />
+          <Image src="/brand/logo-mark-light.png" alt="KCG" width={60} height={72} className="h-18 w-auto" priority />
           <h1 className="font-display text-xl font-bold text-white">Admin Login</h1>
         </div>
         <input name="email" type="email" required autoComplete="username" placeholder="Email" className="admin-input" />

@@ -29,7 +29,13 @@ export interface Message {
 
 export interface SiteSettings {
   phoneDisplay: string;
+  phone2Display: string;
   whatsapp: string;
   email: string;
   address: string;
+  facebook: string;
+  instagram: string;
+  tiktok: string;
+  youtube: string;
+  linkedin: string;
 }

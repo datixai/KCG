@@ -11,7 +11,7 @@ export default function ProjectsAdmin() {
       fields={[
         { name: 'title', label: 'Title', type: 'text' },
         { name: 'location', label: 'Location (e.g. Mirpur, AJK)', type: 'text' },
-        { name: 'category', label: 'Category', type: 'select', options: ['Residential', 'Commercial', 'Infrastructure', 'Renovation', 'Design'] },
+        { name: 'category', label: 'Category', type: 'select', options: ['Residential', 'Commercial', 'Industrial', 'Infrastructure', 'Renovation', 'Design'] },
         { name: 'image', label: 'Photo', type: 'image' },
         { name: 'description', label: 'Description (optional)', type: 'textarea' },
         { name: 'order', label: 'Display order', type: 'number' },

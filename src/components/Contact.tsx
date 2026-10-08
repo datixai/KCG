@@ -1,32 +1,41 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import type { SiteSettings } from '@/types';
-import { SectionTitle } from './Services';
+import SectionTitle from './SectionTitle';
 import ContactForm from './ContactForm';
 
 export default function Contact({ settings }: { settings: SiteSettings }) {
+  const tel = (n: string) => `tel:${n.replace(/[^\d+]/g, '')}`;
   const items = [
-    { icon: Phone, label: 'Call Us', value: settings.phoneDisplay, href: `tel:${settings.phoneDisplay.replace(/\s/g, '')}` },
+    { icon: Phone, label: 'Pakistan', value: settings.phoneDisplay, href: tel(settings.phoneDisplay) },
+    ...(settings.phone2Display ? [{ icon: Phone, label: 'United Kingdom', value: settings.phone2Display, href: tel(settings.phone2Display) }] : []),
     { icon: Mail, label: 'Email', value: settings.email, href: `mailto:${settings.email}` },
-    { icon: MapPin, label: 'Location', value: settings.address },
+    { icon: MapPin, label: 'Head Office', value: settings.address },
   ];
   return (
-    <section id="contact" className="py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionTitle eyebrow="Get In Touch" title="Start Your Project" />
-        <div className="mt-12 grid gap-8 lg:grid-cols-5">
-          <div className="space-y-4 lg:col-span-2">
-            {items.map(({ icon: Icon, label, value, href }) => (
-              <a key={label} href={href} className="reveal flex items-start gap-4 rounded-2xl border border-white/10 p-5 transition hover:border-brand-green/50">
-                <Icon className="mt-0.5 size-5 shrink-0 text-brand-orange" />
-                <div className="min-w-0">
-                  <div className="text-sm text-neutral-500">{label}</div>
-                  <div className="break-words font-medium text-white">{value}</div>
-                </div>
-              </a>
-            ))}
-          </div>
-          <ContactForm />
+    <section id="contact" className="relative overflow-hidden bg-cream py-24 sm:py-32">
+      <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-5">
+        <div className="lg:col-span-2">
+          <SectionTitle eyebrow="Get In Touch" lines={['Start Your', 'Project']} />
+          <ul data-stagger className="mt-10 space-y-3">
+            {items.map(({ icon: Icon, label, value, href }) => {
+              const body = (
+                <>
+                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-forest text-gold transition group-hover:bg-gold group-hover:text-forest-deep"><Icon className="size-5" /></span>
+                  <span className="min-w-0">
+                    <span className="block text-xs uppercase tracking-wider text-charcoal/50">{label}</span>
+                    <span className="block break-words font-semibold text-forest-deep">{value}</span>
+                  </span>
+                </>
+              );
+              return (
+                <li key={label}>
+                  {href ? <a href={href} className="group flex items-center gap-4 rounded-sm p-3 transition hover:bg-white">{body}</a> : <div className="group flex items-center gap-4 p-3">{body}</div>}
+                </li>
+              );
+            })}
+          </ul>
         </div>
+        <div data-reveal className="lg:col-span-3"><ContactForm /></div>
       </div>
     </section>
   );

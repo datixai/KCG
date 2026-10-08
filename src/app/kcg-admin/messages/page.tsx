@@ -41,19 +41,19 @@ export default function MessagesAdmin() {
       ) : (
         <ul className="space-y-3">
           {messages.map((m) => (
-            <li key={m.id} onClick={() => markRead(m)} className={`rounded-2xl border p-4 sm:p-5 ${m.read ? 'border-white/10 bg-white/[0.02]' : 'border-brand-green/40 bg-brand-green/5'}`}>
+            <li key={m.id} onClick={() => markRead(m)} className={`rounded-2xl border p-4 sm:p-5 ${m.read ? 'border-white/10 bg-white/[0.02]' : 'border-gold/40 bg-gold/5'}`}>
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
-                  <div className="font-semibold text-white">{m.name} {!m.read && <span className="ml-2 rounded-full bg-brand-orange px-2 py-0.5 text-[10px] font-bold text-ink">NEW</span>}</div>
+                  <div className="font-semibold text-white">{m.name} {!m.read && <span className="ml-2 rounded-full bg-gold px-2 py-0.5 text-[10px] font-bold text-forest-deep">NEW</span>}</div>
                   <div className="text-xs text-neutral-500">{m.createdAt ? new Date(m.createdAt.seconds * 1000).toLocaleString() : ''}</div>
                 </div>
                 <div className="flex gap-1">
-                  <a href={`tel:${m.phone}`} className="p-2 text-neutral-400 hover:text-brand-orange" aria-label="Call"><Phone className="size-4" /></a>
+                  <a href={`tel:${m.phone}`} className="p-2 text-neutral-400 hover:text-gold" aria-label="Call"><Phone className="size-4" /></a>
                   <a href={`https://wa.me/${wa(m.phone)}`} target="_blank" rel="noopener noreferrer" className="p-2 text-neutral-400 hover:text-[#25D366]" aria-label="WhatsApp"><MessageCircle className="size-4" /></a>
                   <button onClick={(e) => { e.stopPropagation(); remove(m); }} className="p-2 text-neutral-400 hover:text-red-400" aria-label="Delete"><Trash2 className="size-4" /></button>
                 </div>
               </div>
-              <div className="mt-1 text-sm text-brand-orange">{m.phone}</div>
+              <div className="mt-1 text-sm text-gold">{m.phone}</div>
               <p className="mt-2 whitespace-pre-wrap text-sm text-neutral-300">{m.message}</p>
             </li>
           ))}

@@ -1,7 +1,12 @@
 import Hero from '@/components/Hero';
-import Services from '@/components/Services';
+import Promises from '@/components/Promises';
 import About from '@/components/About';
+import Stats from '@/components/Stats';
+import Services from '@/components/Services';
 import Projects from '@/components/Projects';
+import Marquee from '@/components/Marquee';
+import WhyKcg from '@/components/WhyKcg';
+import CallToAction from '@/components/CallToAction';
 import Contact from '@/components/Contact';
 import { getProjectsServer, getServicesServer, getSettingsServer } from '@/lib/firestore-server';
 
@@ -13,9 +18,14 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <Services services={services} />
+      <Promises />
       <About />
+      <Stats />
+      <Services services={services} />
       <Projects projects={projects} />
+      <Marquee />
+      <WhyKcg />
+      <CallToAction />
       <Contact settings={settings} />
     </>
   );
