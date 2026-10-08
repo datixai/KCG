@@ -25,7 +25,6 @@ const groups: { title: string; fields: Field[] }[] = [
     { path: 'hero.text', label: 'Description', kind: 'textarea' },
     { path: 'hero.primaryCta', label: 'Gold button text' },
     { path: 'hero.secondaryCta', label: 'Outline button text' },
-    { path: 'hero.location', label: 'Location tag (Town, Region)' },
     { path: 'hero.video', label: 'Background video (desktop)', kind: 'video' },
     { path: 'hero.videoMobile', label: 'Background video (phones, smaller file)', kind: 'video' },
     { path: 'hero.poster', label: 'Image shown while the video loads', kind: 'image' },

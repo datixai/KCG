@@ -61,11 +61,11 @@ export default function Footer({ settings, services, blurb }: { settings: SiteSe
 
       <div className="relative mt-16 border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/50 sm:flex-row sm:px-6">
-          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <p>
             Designed &amp; Developed by{' '}
             <a href="https://datixai.com" target="_blank" rel="noopener" className="font-semibold text-gold transition hover:text-gold-light">Datix AI</a>
           </p>
+          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
         </div>
       </div>
     </footer>

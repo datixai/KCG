@@ -26,7 +26,7 @@ function Card({ p, i }: { p: Project; i: number }) {
   );
 }
 
-/** Projects glide continuously from left to right; hovering pauses them. */
+/** Projects glide continuously from right to left, in order (01, 02, …); hovering pauses them. */
 export default function Projects({ projects, content }: { projects: Project[]; content: HomeContent['projects'] }) {
   // Repeat short lists so the moving row is always wider than the screen
   const row = projects.length ? Array.from({ length: Math.ceil(8 / projects.length) }, () => projects).flat() : [];
@@ -41,7 +41,7 @@ export default function Projects({ projects, content }: { projects: Project[]; c
       </div>
 
       <div className="group/row relative mt-14 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
-        <div className="flex w-max animate-marquee-reverse gap-6 pr-6 group-hover/row:[animation-play-state:paused]" style={{ animationDuration: `${seconds}s` }}>
+        <div className="flex w-max animate-marquee gap-6 pr-6 group-hover/row:[animation-play-state:paused]" style={{ animationDuration: `${seconds}s` }}>
           {[0, 1].map((copy) => (
             <div key={copy} className="flex gap-6" aria-hidden={copy === 1}>
               {row.map((p, i) => <Card key={`${copy}-${p.id}-${i}`} p={p} i={i % projects.length} />)}
