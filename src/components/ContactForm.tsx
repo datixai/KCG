@@ -53,7 +53,7 @@ export default function ContactForm({ title, text }: { title: string; text: stri
     <form onSubmit={onSubmit} className="relative grid gap-4 overflow-hidden rounded-sm bg-white p-6 shadow-2xl shadow-forest-deep/10 sm:grid-cols-2 sm:p-10">
       <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-gold-dark via-gold to-gold-light" />
       <h3 className="font-display text-2xl font-bold uppercase text-forest-deep sm:col-span-2">{title}</h3>
-      <p className="-mt-2 mb-2 text-sm text-charcoal/60 sm:col-span-2">{text}</p>
+      <p className="-mt-2 mb-2 text-sm text-charcoal/75 sm:col-span-2">{text}</p>
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
       <input required name="name" maxLength={150} placeholder="Your Name" className={input} />
       <input required name="phone" type="tel" maxLength={30} placeholder="Phone / WhatsApp" className={input} />
