@@ -9,7 +9,7 @@ function Card({ p, i }: { p: Project; i: number }) {
     <article className="group relative w-[78vw] shrink-0 sm:w-[44vw] lg:w-[28vw] xl:w-[24vw]">
       <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
         {p.image ? (
-          <Image src={p.image} alt={p.title} fill sizes="(min-width: 1024px) 28vw, 78vw" className="object-cover transition duration-700 group-hover:scale-110" />
+          <Image src={p.image} alt={`${p.title}, ${p.location}`} fill sizes="(min-width: 1024px) 28vw, 78vw" className="object-cover transition duration-700 group-hover:scale-110" />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-forest-light to-forest-deep" />
         )}

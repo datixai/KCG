@@ -5,6 +5,7 @@ import { FacebookIcon, InstagramIcon, LinkedInIcon, TikTokIcon, WhatsAppIcon, Yo
 import Logo from './Logo';
 import { digits, safeEmail, safeUrl } from '@/lib/safe';
 import { AjkFlag, UkFlag } from './Flags';
+import { townPath, towns } from '@/lib/seo';
 
 export default function Footer({ settings, services, blurb }: { settings: SiteSettings; services: Service[]; blurb: string }) {
   // Links from admin Settings are checked so they can only be real web/email/WhatsApp links
@@ -26,7 +27,7 @@ export default function Footer({ settings, services, blurb }: { settings: SiteSe
   return (
     <footer className="relative overflow-hidden bg-forest-deep pt-20 text-white">
       <div className="stripe -right-16 top-0 h-full w-6 rotate-[18deg] opacity-20" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1.2fr_1.4fr]">
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_0.9fr_1.2fr_1fr_1.4fr]">
         <div>
           <Logo />
           <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/65">{blurb}</p>
@@ -47,7 +48,12 @@ export default function Footer({ settings, services, blurb }: { settings: SiteSe
 
         <div>
           <h3 className={heading}>Our Services</h3>
-          <ul className="space-y-3">{services.map((s) => <li key={s.id}><a href="#services" className={link}>{s.title}</a></li>)}</ul>
+          <ul className="space-y-3">{services.map((s) => <li key={s.id}><a href="/#services" className={link}>{s.title}</a></li>)}</ul>
+        </div>
+
+        <div>
+          <h3 className={heading}>Areas We Serve</h3>
+          <ul className="space-y-3">{towns.map((t) => <li key={t.slug}><a href={townPath(t)} className={link}>{t.name}</a></li>)}</ul>
         </div>
 
         <div>
@@ -60,7 +66,7 @@ export default function Footer({ settings, services, blurb }: { settings: SiteSe
             {email && <li><a href={`mailto:${email}`} className="flex items-center gap-3 break-all hover:text-gold"><Mail className="size-4 shrink-0 text-gold" /> {email}</a></li>}
             <li className="flex items-start gap-3"><MapPin className="mt-0.5 size-4 shrink-0 text-gold" /> {settings.address}</li>
           </ul>
-          <a href="#contact" className="btn-gold mt-7">Get a Quote <ArrowRight className="size-4" /></a>
+          <a href="/#contact" className="btn-gold mt-7">Get a Quote <ArrowRight className="size-4" /></a>
         </div>
       </div>
 

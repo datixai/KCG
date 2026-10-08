@@ -16,11 +16,11 @@ export const site = {
     tiktok: 'https://www.tiktok.com/@kashmirconstructiongroup',
   },
   nav: [
-    { href: '#top', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#services', label: 'Services' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#why', label: 'Why KCG' },
-    { href: '#contact', label: 'Contact' },
+    { href: '/#top', label: 'Home' },
+    { href: '/#about', label: 'About' },
+    { href: '/#services', label: 'Services' },
+    { href: '/#projects', label: 'Projects' },
+    { href: '/#why', label: 'Why KCG' },
+    { href: '/#contact', label: 'Contact' },
   ],
 };

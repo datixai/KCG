@@ -33,7 +33,7 @@ export default function Header() {
         }`}
       >
         <nav className={`mx-auto flex max-w-7xl items-center justify-between px-4 transition-all sm:px-6 ${scrolled ? 'h-18' : 'h-20 sm:h-24'}`}>
-          <a href="#top"><Logo /></a>
+          <a href="/" aria-label="Kashmir Construction Group home"><Logo /></a>
 
           <ul className="hidden items-center gap-7 lg:flex">
             {site.nav.map((n) => (
@@ -46,7 +46,7 @@ export default function Header() {
             ))}
           </ul>
 
-          <a href="#contact" className="btn-gold hidden !px-5 !py-3 lg:inline-flex">
+          <a href="/#contact" className="btn-gold hidden !px-5 !py-3 lg:inline-flex">
             Get a Quote <ArrowRight className="size-4" />
           </a>
 
@@ -67,7 +67,7 @@ export default function Header() {
           ))}
         </ul>
         <div className="mt-auto p-8">
-          <a href="#contact" onClick={() => setOpen(false)} className="btn-gold w-full">Get a Quote <ArrowRight className="size-4" /></a>
+          <a href="/#contact" onClick={() => setOpen(false)} className="btn-gold w-full">Get a Quote <ArrowRight className="size-4" /></a>
         </div>
       </div>
     </>

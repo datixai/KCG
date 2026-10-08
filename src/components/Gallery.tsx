@@ -29,7 +29,7 @@ export default function Gallery({ content }: { content: HomeContent['gallery'] }
             const t = tiles[i % tiles.length];
             return (
               <figure key={`${src}-${i}`} className={`group relative overflow-hidden rounded-sm bg-forest ${t.span}`}>
-                <Image src={src} alt="KCG construction site" fill sizes={t.sizes} className="object-cover transition duration-700 group-hover:scale-105" />
+                <Image src={src} alt="Kashmir Construction Group site work in Dadyal, Azad Kashmir" fill sizes={t.sizes} className="object-cover transition duration-700 group-hover:scale-105" />
                 <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" />
               </figure>
             );

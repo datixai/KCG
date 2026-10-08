@@ -4,11 +4,13 @@ import WhatsAppFloat from '@/components/WhatsAppFloat';
 import BackToTop from '@/components/BackToTop';
 import Motion from '@/components/Motion';
 import { getHomeServer, getServicesServer, getSettingsServer } from '@/lib/firestore-server';
+import { businessJsonLd, jsonLd } from '@/lib/seo';
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const [settings, services, home] = await Promise.all([getSettingsServer(), getServicesServer(), getHomeServer()]);
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(businessJsonLd(settings, services))} />
       <a href="#main" className="sr-only z-[100] rounded-sm bg-gold px-4 py-2 font-semibold text-forest-deep focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
       <Header />
       <main id="main">{children}</main>

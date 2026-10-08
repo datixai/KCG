@@ -10,6 +10,8 @@ import WhyKcg from '@/components/WhyKcg';
 import Gallery from '@/components/Gallery';
 import CallToAction from '@/components/CallToAction';
 import Contact from '@/components/Contact';
+import Faq from '@/components/Faq';
+import { faqJsonLd, homeFaqs, jsonLd } from '@/lib/seo';
 import { getHomeServer, getProjectsServer, getServicesServer, getSettingsServer } from '@/lib/firestore-server';
 
 // Static page, regenerated in the background at most once a minute (admin edits show up within 60s)
@@ -19,6 +21,7 @@ export default async function Home() {
   const [services, projects, settings, home] = await Promise.all([getServicesServer(), getProjectsServer(), getSettingsServer(), getHomeServer()]);
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(faqJsonLd(homeFaqs))} />
       <Hero content={home.hero} />
       <Promises items={home.promises} />
       <About content={home.about} />
@@ -29,6 +32,7 @@ export default async function Home() {
       <Marquee text={home.marquee} />
       <WhyKcg content={home.why} />
       <Gallery content={home.gallery} />
+      <Faq title={'Questions\nWe Get Asked'} items={homeFaqs} />
       <CallToAction content={home.cta} />
       <Contact settings={settings} content={home.contact} />
     </>

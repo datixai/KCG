@@ -28,7 +28,7 @@ export default function About({ content }: { content: HomeContent['about'] }) {
           <div data-reveal data-delay="0.3" className="absolute bottom-0 right-0 w-[52%] overflow-hidden rounded-sm border-[6px] border-cream shadow-2xl shadow-forest-deep/30">
             {content.image && (
               <div className="relative aspect-[4/3]">
-                <Image src={content.image} alt="KCG site" fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
+                <Image src={content.image} alt="KCG batching plant, Dadyal" fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
               </div>
             )}
             <div className="bg-forest p-4 sm:p-5">
