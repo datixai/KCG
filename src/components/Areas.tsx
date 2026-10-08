@@ -11,7 +11,7 @@ export default function Areas({ content }: { content: HomeContent['areas'] }) {
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2">
         <div>
           <SectionTitle eyebrow={content.eyebrow} title={content.title} />
-          <p data-reveal className="mt-6 max-w-lg text-base leading-relaxed text-charcoal/70 sm:text-lg">{content.text}</p>
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-charcoal/70 sm:text-lg">{content.text}</p>
           <ul data-stagger className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {towns.map((t) => {
               const hq = t.toLowerCase() === content.headOffice.toLowerCase();

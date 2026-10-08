@@ -1,14 +1,19 @@
+import { preload } from 'react-dom';
 import { ArrowRight } from 'lucide-react';
+import { safeSrc } from '@/lib/safe';
 import { lines as toLines, type HomeContent } from '@/lib/home';
 import BgVideo from './BgVideo';
 
 export default function Hero({ content }: { content: HomeContent['hero'] }) {
   const lines = toLines(content.title);
+  // The poster is the first big thing painted, so fetch it at top priority
+  const poster = safeSrc(content.poster);
+  if (poster) preload(poster, { as: 'image', fetchPriority: 'high' });
 
   return (
     <section id="top" className="relative flex min-h-[88svh] items-center overflow-hidden bg-forest-deep">
-      {/* Drone footage of the KCG site */}
-      <BgVideo src={content.video} mobileSrc={content.videoMobile} poster={content.poster} className="absolute inset-0 size-full object-cover" />
+      {/* Drone footage of the KCG site (poster shows instantly, video starts once the page has loaded) */}
+      <BgVideo eager src={content.video} mobileSrc={content.videoMobile} poster={content.poster} className="absolute inset-0 size-full object-cover" />
       <div className="absolute inset-0 bg-forest-deep/65" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(10,42,31,0.6)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-forest-deep/80 to-transparent" />

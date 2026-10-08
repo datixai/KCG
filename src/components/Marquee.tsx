@@ -1,7 +1,7 @@
 import { list } from '@/lib/home';
 
 function Row({ words, reverse = false }: { words: string[]; reverse?: boolean }) {
-  const items = [...words, ...words];
+  const items = words.length < 5 ? [...words, ...words] : words;
   return (
     <div className={`flex w-max ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}>
       {[0, 1].map((copy) => (

@@ -33,7 +33,7 @@ export default function Header() {
         }`}
       >
         <nav className={`mx-auto flex max-w-7xl items-center justify-between px-4 transition-all sm:px-6 ${scrolled ? 'h-18' : 'h-20 sm:h-24'}`}>
-          <a href="#top" aria-label={site.name}><Logo /></a>
+          <a href="#top"><Logo /></a>
 
           <ul className="hidden items-center gap-7 lg:flex">
             {site.nav.map((n) => (

@@ -50,7 +50,6 @@ const groups: { title: string; fields: Field[] }[] = [
     { path: `${p}.label`, label: `Stat ${n} — label` },
   ]) },
   { title: 'Services heading', fields: [
-    { path: 'services.eyebrow', label: 'Small heading' },
     { path: 'services.title', label: 'Title', kind: 'title' },
     { path: 'services.text', label: 'Text', kind: 'textarea' },
   ] },
@@ -77,7 +76,6 @@ const groups: { title: string; fields: Field[] }[] = [
     ]),
   ] },
   { title: 'On-site gallery', fields: [
-    { path: 'gallery.eyebrow', label: 'Small heading' },
     { path: 'gallery.title', label: 'Title', kind: 'title' },
     { path: 'gallery.images', label: 'Photos (8 look best)', kind: 'images' },
   ] },
@@ -91,7 +89,6 @@ const groups: { title: string; fields: Field[] }[] = [
     { path: 'cta.poster', label: 'Image shown while the video loads', kind: 'image' },
   ] },
   { title: 'Contact & footer', fields: [
-    { path: 'contact.eyebrow', label: 'Small heading' },
     { path: 'contact.title', label: 'Title', kind: 'title' },
     { path: 'contact.formTitle', label: 'Form title' },
     { path: 'contact.formText', label: 'Form text' },

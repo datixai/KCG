@@ -27,7 +27,8 @@ const nextConfig: NextConfig = {
   // Only our own images go through the optimizer; pasted links from other sites are shown
   // as-is (see components/SiteImage.tsx), so strangers can't use our server to fetch images.
   images: { formats: ['image/avif', 'image/webp'] },
-  experimental: { optimizePackageImports: ['lucide-react'] },
+  // inlineCss puts the (small) stylesheet in the HTML so the first paint doesn't wait for a CSS file
+  experimental: { optimizePackageImports: ['lucide-react'], inlineCss: true },
   async headers() {
     return [
       {
@@ -44,6 +45,7 @@ const nextConfig: NextConfig = {
       },
       { source: '/brand/(.*)', headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000' }] },
       { source: '/videos/(.*)', headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000' }] },
+      { source: '/images/(.*)', headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000' }] },
     ];
   },
 };

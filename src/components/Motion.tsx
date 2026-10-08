@@ -20,7 +20,7 @@ export default function Motion() {
     let cleanup = () => {};
     let cancelled = false;
 
-    (async () => {
+    const start = async () => {
       const [{ gsap }, { ScrollTrigger }, { default: Lenis }] = await Promise.all([
         import('gsap'),
         import('gsap/ScrollTrigger'),
@@ -97,7 +97,10 @@ export default function Motion() {
         gsap.ticker.remove(tick);
         lenis.destroy();
       };
-    })();
+    };
+    // Wait until the page has painted and the browser is idle
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 200));
+    idle(() => { start(); });
 
     return () => { cancelled = true; cleanup(); };
   }, []);

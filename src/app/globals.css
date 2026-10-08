@@ -8,6 +8,7 @@
   --color-gold: #e0a63b;
   --color-gold-dark: #c88e25;
   --color-gold-light: #f0c46f;
+  --color-gold-deep: #85600f; /* gold for small text on light backgrounds (passes contrast) */
   --color-cream: #f5f3ee;
   --color-cream-dark: #e9e5dc;
   --color-charcoal: #1b211e;
@@ -46,6 +47,9 @@ html.lenis, html.lenis body { height: auto; scroll-behavior: auto; }
 
 body { @apply bg-cream text-charcoal antialiased; }
 ::selection { @apply bg-gold text-forest-deep; }
+
+/* Visible keyboard focus everywhere (mouse clicks don't show it) */
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; border-radius: 2px; }
 
 /* Headings revealed line by line: <span class="line"><span>Text</span></span> */
 .line { display: block; overflow: hidden; padding-bottom: 0.06em; }

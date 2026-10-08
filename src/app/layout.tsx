@@ -11,8 +11,16 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   title: { default: `${site.name} | Construction in Azad Kashmir`, template: `%s | ${site.short}` },
   description: site.description,
-  icons: { icon: '/brand/logo.jpg', apple: '/brand/logo.jpg' },
-  openGraph: { title: site.name, description: site.description, images: ['/brand/logo.jpg'], type: 'website' },
+  openGraph: {
+    title: site.name,
+    description: site.description,
+    url: '/',
+    siteName: site.name,
+    type: 'website',
+    locale: 'en_GB',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: site.name }],
+  },
+  twitter: { card: 'summary_large_image', title: site.name, description: site.description, images: ['/og-image.jpg'] },
 };
 
 export const viewport: Viewport = { themeColor: '#0a2a1f', width: 'device-width', initialScale: 1 };

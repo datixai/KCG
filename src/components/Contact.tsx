@@ -18,14 +18,14 @@ export default function Contact({ settings, content }: { settings: SiteSettings;
     <section id="contact" className="relative overflow-hidden bg-cream py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <SectionTitle eyebrow={content.eyebrow} title={content.title} />
-          <ul data-stagger className="mt-10 space-y-3">
+          <SectionTitle title={content.title} />
+          <ul className="mt-10 space-y-3">
             {items.map(({ icon: Icon, label, value, href }) => {
               const body = (
                 <>
                   <span className="grid size-11 shrink-0 place-items-center rounded-full bg-forest text-gold transition group-hover:bg-gold group-hover:text-forest-deep"><Icon className="size-5" /></span>
                   <span className="min-w-0">
-                    <span className="block text-xs uppercase tracking-wider text-charcoal/50">{label}</span>
+                    <span className="block text-xs uppercase tracking-wider text-charcoal/70">{label}</span>
                     <span className="block break-words font-semibold text-forest-deep">{value}</span>
                   </span>
                 </>

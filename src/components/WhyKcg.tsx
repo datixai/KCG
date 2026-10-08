@@ -26,7 +26,7 @@ export default function WhyKcg({ content }: { content: HomeContent['why'] }) {
             const Icon = icons[i % icons.length];
             return (
               <li key={`${title}-${i}`} className="group flex items-start gap-5 rounded-sm border-b border-forest/10 p-5 transition hover:bg-white hover:shadow-xl hover:shadow-forest-deep/5">
-                <span className="font-display text-sm font-bold text-gold-dark">{String(i + 1).padStart(2, '0')}</span>
+                <span className="font-display text-sm font-bold text-gold-deep">{String(i + 1).padStart(2, '0')}</span>
                 <Icon className="size-9 shrink-0 text-forest transition duration-500 group-hover:text-gold-dark" strokeWidth={1.4} />
                 <div>
                   <h3 className="font-bold text-forest-deep">{title}</h3>

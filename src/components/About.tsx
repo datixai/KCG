@@ -11,10 +11,10 @@ export default function About({ content }: { content: HomeContent['about'] }) {
       <div className="mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2">
         <div>
           <SectionTitle eyebrow={content.eyebrow} title={content.title} />
-          <div data-reveal className="mt-8 space-y-4 text-base leading-relaxed text-charcoal/75 sm:text-lg">
+          <div className="mt-8 space-y-4 text-base leading-relaxed text-charcoal/75 sm:text-lg">
             {content.text.split(/\n\s*\n/).map((p, i) => <p key={i}>{p}</p>)}
           </div>
-          <a data-reveal href="#why" className="btn-gold mt-10">Learn More <ArrowRight className="size-4" /></a>
+          <a href="#why" className="btn-gold mt-10">Learn More <ArrowRight className="size-4" /></a>
         </div>
 
         {/* Site video with overlapping photo and gold diagonal */}

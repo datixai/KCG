@@ -9,6 +9,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const [settings, services, home] = await Promise.all([getSettingsServer(), getServicesServer(), getHomeServer()]);
   return (
     <>
+      <a href="#main" className="sr-only z-[100] rounded-sm bg-gold px-4 py-2 font-semibold text-forest-deep focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
       <Header />
       <main id="main">{children}</main>
       <Footer settings={settings} services={services} blurb={home.footer.blurb} />

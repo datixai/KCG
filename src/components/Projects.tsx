@@ -29,7 +29,7 @@ function Card({ p, i }: { p: Project; i: number }) {
 /** Projects glide continuously from right to left, in order (01, 02, …); hovering pauses them. */
 export default function Projects({ projects, content }: { projects: Project[]; content: HomeContent['projects'] }) {
   // Repeat short lists so the moving row is always wider than the screen
-  const row = projects.length ? Array.from({ length: Math.ceil(8 / projects.length) }, () => projects).flat() : [];
+  const row = projects.length ? Array.from({ length: Math.ceil(5 / projects.length) }, () => projects).flat() : [];
   const seconds = Math.max(30, row.length * 7);
 
   return (
@@ -37,7 +37,7 @@ export default function Projects({ projects, content }: { projects: Project[]; c
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(224,166,59,0.12),transparent_55%)]" />
       <div className="relative mx-auto flex w-full max-w-7xl flex-wrap items-end justify-between gap-6 px-4 sm:px-6">
         <SectionTitle eyebrow={content.eyebrow} title={content.title} dark />
-        <a data-reveal href="#contact" className="btn-gold">Start Your Project <ArrowRight className="size-4" /></a>
+        <a href="#contact" className="btn-gold">Start Your Project <ArrowRight className="size-4" /></a>
       </div>
 
       <div className="group/row relative mt-14 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">

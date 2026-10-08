@@ -29,5 +29,11 @@
     "@grpc/grpc-js": "^1.14.6",
     "postcss": "^8.5.29",
     "sharp": "^0.35.5"
-  }
+  },
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 111",
+    "safari >= 16.4"
+  ]
 }
