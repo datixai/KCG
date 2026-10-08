@@ -17,7 +17,7 @@ export default function Contact({ settings, content }: { settings: SiteSettings;
   return (
     <section id="contact" className="relative overflow-hidden bg-cream py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-5">
-        <div className="lg:col-span-2">
+        <div className="min-w-0 lg:col-span-2">
           <SectionTitle title={content.title} />
           <ul className="mt-10 space-y-3">
             {items.map(({ icon: Icon, label, value, href }) => {
@@ -26,7 +26,7 @@ export default function Contact({ settings, content }: { settings: SiteSettings;
                   <span className="grid size-11 shrink-0 place-items-center rounded-full bg-forest text-gold transition group-hover:bg-gold group-hover:text-forest-deep"><Icon className="size-5" /></span>
                   <span className="min-w-0">
                     <span className="block text-xs uppercase tracking-wider text-charcoal/70">{label}</span>
-                    <span className="block break-words font-semibold text-forest-deep">{value}</span>
+                    <span className="block break-words [overflow-wrap:anywhere] font-semibold text-forest-deep">{value}</span>
                   </span>
                 </>
               );
@@ -38,7 +38,7 @@ export default function Contact({ settings, content }: { settings: SiteSettings;
             })}
           </ul>
         </div>
-        <div data-reveal className="lg:col-span-3"><ContactForm title={content.formTitle} text={content.formText} /></div>
+        <div data-reveal className="min-w-0 lg:col-span-3"><ContactForm title={content.formTitle} text={content.formText} /></div>
       </div>
     </section>
   );
