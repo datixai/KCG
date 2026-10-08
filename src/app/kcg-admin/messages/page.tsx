@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { MessageCircle, Phone, Trash2 } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import type { Message } from '@/types';
+import { friendlyError } from '@/lib/errors';
 
 export default function MessagesAdmin() {
   const [messages, setMessages] = useState<Message[] | null>(null);
@@ -14,7 +15,7 @@ export default function MessagesAdmin() {
     setMessages(snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Message));
   };
 
-  useEffect(() => { load().catch((e) => { toast.error(e.message); setMessages([]); }); }, []);
+  useEffect(() => { load().catch((e) => { toast.error(friendlyError(e), { duration: 8000 }); setMessages([]); }); }, []);
 
   const markRead = async (m: Message) => {
     if (m.read) return;

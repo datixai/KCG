@@ -23,8 +23,11 @@ export default function Header() {
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6">
         <a href="#" className="flex items-center gap-3">
-          <Image src="/brand/logo.jpg" alt={site.name} width={48} height={48} className="size-10 rounded-full sm:size-12" priority />
-          <span className="font-display text-lg font-semibold tracking-wider text-white sm:text-xl">{site.short}</span>
+          <Image src="/brand/logo-mark.png" alt={site.name} width={44} height={53} className="h-10 w-auto sm:h-12" priority />
+          <span className="leading-tight">
+            <span className="block font-display text-base font-bold tracking-[0.2em] text-white sm:text-lg">KASHMIR</span>
+            <span className="block text-[9px] font-medium tracking-[0.25em] text-brand-orange sm:text-[10px]">CONSTRUCTION GROUP</span>
+          </span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">

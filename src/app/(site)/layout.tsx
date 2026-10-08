@@ -9,7 +9,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
     <>
       <Header />
       <main id="main">{children}</main>
-      <Footer />
+      <Footer settings={settings} />
       <WhatsAppFloat whatsapp={settings.whatsapp} />
     </>
   );

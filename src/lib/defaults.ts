@@ -10,12 +10,12 @@ export const defaultSettings: SiteSettings = {
 };
 
 export const defaultServices: Service[] = [
-  { id: 'd1', icon: 'Home', title: 'Residential Construction', text: 'Custom homes and villas built to last with quality materials.' },
-  { id: 'd2', icon: 'Building2', title: 'Commercial Projects', text: 'Plazas, offices and shops delivered on time and on budget.' },
-  { id: 'd3', icon: 'Ruler', title: 'Architecture & Design', text: 'Modern designs, 3D plans and approvals handled end to end.' },
-  { id: 'd4', icon: 'HardHat', title: 'Grey Structure', text: 'Strong foundations and structural work by experienced teams.' },
-  { id: 'd5', icon: 'Paintbrush', title: 'Finishing & Renovation', text: 'Interiors, tiles, paint and complete renovations.' },
-  { id: 'd6', icon: 'Truck', title: 'Infrastructure', text: 'Roads, retaining walls and civil works across AJK.' },
+  { id: 'd1', icon: 'Home', title: 'Residential Construction', text: 'Custom homes and villas built to last with quality materials.', image: '/images/services/residential.webp' },
+  { id: 'd2', icon: 'Building2', title: 'Commercial Projects', text: 'Plazas, offices and shops delivered on time and on budget.', image: '/images/services/commercial.webp' },
+  { id: 'd3', icon: 'Ruler', title: 'Architecture & Design', text: 'Modern designs, 3D plans and approvals handled end to end.', image: '/images/services/design.webp' },
+  { id: 'd4', icon: 'HardHat', title: 'Grey Structure', text: 'Strong foundations and structural work by experienced teams.', image: '/images/services/grey-structure.webp' },
+  { id: 'd5', icon: 'Paintbrush', title: 'Finishing & Renovation', text: 'Interiors, tiles, paint and complete renovations.', image: '/images/services/finishing.webp' },
+  { id: 'd6', icon: 'Truck', title: 'Infrastructure', text: 'Roads, retaining walls and civil works across AJK.', image: '/images/services/infrastructure.webp' },
 ];
 
 export const defaultProjects: Project[] = [

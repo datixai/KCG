@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { collection, doc, getCountFromServer, query, serverTimestamp, where, writeBatch } from 'firebase/firestore';
 import toast from 'react-hot-toast';
 import { db } from '@/lib/firebase';
+import { friendlyError } from '@/lib/errors';
 import { defaultProjects, defaultServices } from '@/lib/defaults';
 import { ADMIN } from './AdminShell';
 
@@ -43,7 +44,7 @@ export default function Dashboard() {
       toast.success(`Added ${added} demo items`);
       loadCounts();
     } catch (err) {
-      toast.error((err as Error).message);
+      toast.error(friendlyError(err), { duration: 8000 });
     } finally {
       setSeeding(false);
     }

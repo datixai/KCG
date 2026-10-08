@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { Pencil, Plus, Trash2, X } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import ImageUpload from './ImageUpload';
+import { friendlyError } from '@/lib/errors';
 
 export type Field =
   | { name: string; label: string; type: 'text' | 'textarea' | 'number' | 'image' | 'checkbox' }
@@ -35,7 +36,7 @@ export default function CollectionManager({
     setLoading(false);
   }, [collectionName]);
 
-  useEffect(() => { load().catch((e) => { toast.error(e.message); setLoading(false); }); }, [load]);
+  useEffect(() => { load().catch((e) => { toast.error(friendlyError(e), { duration: 8000 }); setLoading(false); }); }, [load]);
 
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +50,7 @@ export default function CollectionManager({
       setEditing(null);
       await load();
     } catch (err) {
-      toast.error((err as Error).message);
+      toast.error(friendlyError(err), { duration: 8000 });
     } finally {
       setSaving(false);
     }
