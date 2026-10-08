@@ -4,9 +4,10 @@ import './globals.css';
 import { site } from '@/config/site';
 import { KEYWORDS } from '@/lib/seo';
 
-const title = 'Construction Company in Dadyal, Mirpur & Kotli, Azad Kashmir';
+// Kept within what Google shows in results (~60 / ~160 characters)
+const title = `${site.name} | Builders in Dadyal, Mirpur & Kotli`;
 const description =
-  'Kashmir Construction Group (KCG) builds homes, commercial buildings and infrastructure and supplies ready-mix concrete in Dadyal, Mirpur, Kotli and across Azad Kashmir. Free quotes.';
+  'Kashmir Construction Group builds homes, commercial buildings and roads, and supplies ready-mix concrete in Dadyal, Mirpur, Kotli and across Azad Kashmir.';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const cinzel = Cinzel({ subsets: ['latin'], variable: '--font-cinzel', display: 'swap' });
@@ -14,7 +15,7 @@ const cinzel = Cinzel({ subsets: ['latin'], variable: '--font-cinzel', display: 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   alternates: { canonical: '/' },
-  title: { default: `${title} | ${site.name}`, template: `%s | ${site.short}` },
+  title: { default: title, template: `%s | ${site.short}` },
   description,
   keywords: KEYWORDS,
   applicationName: site.name,
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   },
   other: { 'geo.region': 'PK-JK', 'geo.placename': 'Dadyal, Azad Kashmir', 'geo.position': '33.2226;73.7108', ICBM: '33.2226, 73.7108' },
   openGraph: {
-    title: `${title} | ${site.name}`,
+    title,
     description,
     url: '/',
     siteName: site.name,
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: site.name }],
   },
-  twitter: { card: 'summary_large_image', title: `${title} | ${site.name}`, description, images: ['/og-image.jpg'] },
+  twitter: { card: 'summary_large_image', title, description, images: ['/og-image.jpg'] },
 };
 
 export const viewport: Viewport = { themeColor: '#0a2a1f', width: 'device-width', initialScale: 1 };

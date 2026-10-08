@@ -21,13 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = townBySlug((await params).town);
   if (!t) return {};
   const title = `Construction Company in ${t.name}, ${t.region}`;
-  const description = `Kashmir Construction Group builds homes, commercial buildings and infrastructure in ${t.name}. ${t.blurb} Free quotes.`;
+  const description = `Construction company in ${t.name}, ${t.region}: new homes, commercial buildings, renovations and ready-mix concrete by Kashmir Construction Group. Free quotes.`;
   return {
     title,
     description,
     alternates: { canonical: townPath(t) },
-    openGraph: { title: `${title} | KCG`, description, url: townPath(t) },
-    twitter: { title: `${title} | KCG`, description },
+    openGraph: { title: `${title} | KCG`, description, url: townPath(t), type: 'website', siteName: 'Kashmir Construction Group', images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: title }] },
+    twitter: { card: 'summary_large_image', title: `${title} | KCG`, description, images: ['/og-image.jpg'] },
   };
 }
 

@@ -8,6 +8,7 @@
   --color-gold: #e0a63b;
   --color-gold-dark: #c88e25;
   --color-gold-light: #f0c46f;
+  --color-gold-text: #a9741a; /* gold for large headings on light backgrounds (3:1 contrast) */
   --color-gold-deep: #85600f; /* gold for small text on light backgrounds (passes contrast) */
   --color-cream: #f5f3ee;
   --color-cream-dark: #e9e5dc;

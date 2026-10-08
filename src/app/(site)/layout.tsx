@@ -15,8 +15,10 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <Header />
       <main id="main">{children}</main>
       <Footer settings={settings} services={services} blurb={home.footer.blurb} />
-      <BackToTop />
-      <WhatsAppFloat whatsapp={settings.whatsapp} />
+      <aside aria-label="Quick actions">
+        <BackToTop />
+        <WhatsAppFloat whatsapp={settings.whatsapp} />
+      </aside>
       <Motion />
     </>
   );

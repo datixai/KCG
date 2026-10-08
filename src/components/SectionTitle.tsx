@@ -14,7 +14,7 @@ export default function SectionTitle({
       <h2 data-lines className={`font-display text-[clamp(1.75rem,9.5vw,2.25rem)] font-bold uppercase leading-[1.02] sm:text-5xl lg:text-6xl ${dark ? 'text-white' : 'text-forest-deep'}`}>
         {lines.map((l, i) => (
           <span key={`${l}-${i}`} className="line">
-            <span className={i === lines.length - 1 ? 'text-gold' : ''}>{l}</span>
+            <span className={i === lines.length - 1 ? (dark ? 'text-gold' : 'text-gold-text') : ''}>{l}</span>
           </span>
         ))}
       </h2>
