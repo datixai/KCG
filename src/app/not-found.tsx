@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft } from 'lucide-react';
 
 export const metadata = { title: 'Page not found' };
 
@@ -14,7 +13,7 @@ export default function NotFound() {
           This page is <span className="text-gold">under construction</span>
         </h1>
         <p className="mx-auto mt-4 max-w-md text-white/70">The page you&apos;re looking for doesn&apos;t exist or has moved.</p>
-        <Link href="/" className="btn-gold mt-10"><ArrowLeft className="size-4" /> Back to Home</Link>
+        <Link href="/" className="btn-gold mt-10">Back to Home</Link>
       </div>
     </main>
   );

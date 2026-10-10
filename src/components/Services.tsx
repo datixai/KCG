@@ -1,5 +1,5 @@
 import Image from './SiteImage';
-import { ArrowRight, Building2, Factory, Hammer, HardHat, Home, Paintbrush, PencilRuler, Route, Ruler, Settings2, Truck, Wrench, type LucideIcon } from 'lucide-react';
+import { Building2, Factory, Hammer, HardHat, Home, Paintbrush, PencilRuler, Route, Ruler, Settings2, Truck, Wrench, type LucideIcon } from 'lucide-react';
 import type { Service } from '@/types';
 import type { HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';
@@ -21,7 +21,7 @@ export default function Services({ services, content }: { services: Service[]; c
           <SectionTitle title={content.title} className="-mt-6 sm:-mt-10" />
           <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/70">{content.text}</p>
           <a href="#contact" className="group mt-8 inline-flex items-center gap-3 border-b-2 border-gold pb-1 font-semibold text-forest-deep transition hover:text-gold-dark">
-            Discuss your project <ArrowRight className="size-4 transition group-hover:translate-x-1" />
+            Discuss your project
           </a>
         </div>
 

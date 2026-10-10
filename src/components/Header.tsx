@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { site } from '@/config/site';
 import Logo from './Logo';
 
@@ -47,7 +47,7 @@ export default function Header() {
           </ul>
 
           <a href="/#contact" className="btn-gold hidden !px-5 !py-3 lg:inline-flex">
-            Get a Quote <ArrowRight className="size-4" />
+            Get a Quote
           </a>
 
           <button onClick={() => setOpen(!open)} className="relative z-[60] p-2 text-white lg:hidden" aria-label="Toggle menu" aria-expanded={open}>
@@ -67,7 +67,7 @@ export default function Header() {
           ))}
         </ul>
         <div className="mt-auto p-8">
-          <a href="/#contact" onClick={() => setOpen(false)} className="btn-gold w-full">Get a Quote <ArrowRight className="size-4" /></a>
+          <a href="/#contact" onClick={() => setOpen(false)} className="btn-gold w-full">Get a Quote</a>
         </div>
       </div>
     </>

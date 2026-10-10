@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, MessagesSquare, UserCheck } from 'lucide-react';
+import { BadgeCheck, MessagesSquare, UserCheck } from 'lucide-react';
 import { list, type HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';
 import BgVideo from './BgVideo';
@@ -13,7 +13,7 @@ export default function CallToAction({ content }: { content: HomeContent['cta'] 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6">
         <SectionTitle eyebrow={content.eyebrow} title={content.title} dark />
         <p className="mt-6 max-w-lg text-white/80">{content.text}</p>
-        <a href="#contact" className="btn-gold mt-10">{content.button} <ArrowRight className="size-4" /></a>
+        <a href="#contact" className="btn-gold mt-10">{content.button}</a>
         <ul className="mt-16 flex flex-wrap gap-x-10 gap-y-5">
           {list(content.perks).map((label, i) => {
             const Icon = icons[i % icons.length];

@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { site } from '@/config/site';
 import type { Service, SiteSettings } from '@/types';
 import { FacebookIcon, InstagramIcon, LinkedInIcon, TikTokIcon, WhatsAppIcon, YouTubeIcon } from './BrandIcons';
@@ -66,7 +66,7 @@ export default function Footer({ settings, services, blurb }: { settings: SiteSe
             {email && <li><a href={`mailto:${email}`} className="flex items-center gap-3 break-all hover:text-gold"><Mail className="size-4 shrink-0 text-gold" /> {email}</a></li>}
             <li className="flex items-start gap-3"><MapPin className="mt-0.5 size-4 shrink-0 text-gold" /> {settings.address}</li>
           </ul>
-          <a href="/#contact" className="btn-gold mt-7">Get a Quote <ArrowRight className="size-4" /></a>
+          <a href="/#contact" className="btn-gold mt-7">Get a Quote</a>
         </div>
       </div>
 

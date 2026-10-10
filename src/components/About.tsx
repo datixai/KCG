@@ -1,5 +1,4 @@
 import Image from './SiteImage';
-import { ArrowRight } from 'lucide-react';
 import type { HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';
 import RotatingBadge from './RotatingBadge';
@@ -14,7 +13,7 @@ export default function About({ content }: { content: HomeContent['about'] }) {
           <div className="mt-8 space-y-4 text-base leading-relaxed text-charcoal/75 sm:text-lg">
             {content.text.split(/\n\s*\n/).map((p, i) => <p key={i}>{p}</p>)}
           </div>
-          <a href="#why" className="btn-gold mt-10">Learn More <ArrowRight className="size-4" /></a>
+          <a href="#why" className="btn-gold mt-10">Learn More</a>
         </div>
 
         {/* Site video with overlapping photo and gold diagonal */}

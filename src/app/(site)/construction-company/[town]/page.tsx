@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { ArrowRight, Check, MapPin } from 'lucide-react';
+import { Check, MapPin } from 'lucide-react';
 import Image from '@/components/SiteImage';
 import SectionTitle from '@/components/SectionTitle';
 import Faq from '@/components/Faq';
@@ -54,7 +54,7 @@ export default async function TownPage({ params }: Props) {
           <p className="mt-6 flex items-center gap-2 text-sm text-white/70"><MapPin className="size-4 text-gold" /> {t.name}, {t.region}</p>
           <p className="mt-6 max-w-2xl text-lg text-white/85">{t.blurb}</p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <a href="#contact" className="btn-gold">Get a Free Quote <ArrowRight className="size-4" /></a>
+            <a href="#contact" className="btn-gold">Get a Free Quote</a>
             <a href="/#projects" className="btn-outline">See Our Projects</a>
           </div>
         </div>

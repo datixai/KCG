@@ -1,5 +1,4 @@
 import { preload } from 'react-dom';
-import { ArrowRight } from 'lucide-react';
 import { safeSrc } from '@/lib/safe';
 import { lines as toLines, type HomeContent } from '@/lib/home';
 import BgVideo from './BgVideo';
@@ -32,7 +31,7 @@ export default function Hero({ content }: { content: HomeContent['hero'] }) {
           </h1>
           <p className="animate-fade-up mx-auto mt-6 max-w-xl text-base text-white/85 sm:text-lg" style={{ animationDelay: '700ms' }}>{content.text}</p>
           <div className="animate-fade-up mt-8 flex flex-col justify-center gap-4 sm:flex-row" style={{ animationDelay: '850ms' }}>
-            <a href="#contact" className="btn-gold">{content.primaryCta} <ArrowRight className="size-4" /></a>
+            <a href="#contact" className="btn-gold">{content.primaryCta}</a>
             <a href="#projects" className="btn-outline">{content.secondaryCta}</a>
           </div>
         </div>

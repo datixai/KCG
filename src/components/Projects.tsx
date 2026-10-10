@@ -1,5 +1,5 @@
 import Image from './SiteImage';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import type { Project } from '@/types';
 import type { HomeContent } from '@/lib/home';
 import SectionTitle from './SectionTitle';
@@ -37,7 +37,7 @@ export default function Projects({ projects, content }: { projects: Project[]; c
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(224,166,59,0.12),transparent_55%)]" />
       <div className="relative mx-auto flex w-full max-w-7xl flex-wrap items-end justify-between gap-6 px-4 sm:px-6">
         <SectionTitle eyebrow={content.eyebrow} title={content.title} dark />
-        <a href="#contact" className="btn-gold">Start Your Project <ArrowRight className="size-4" /></a>
+        <a href="#contact" className="btn-gold">Start Your Project</a>
       </div>
 
       <div className="group/row relative mt-14 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">

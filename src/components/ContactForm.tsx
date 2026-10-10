@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useState } from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 const input =
   'w-full rounded-sm border border-forest/15 bg-cream/60 px-4 py-3.5 text-forest-deep outline-none transition placeholder:text-charcoal/40 focus:border-gold focus:bg-white';
@@ -60,7 +60,7 @@ export default function ContactForm({ title, text }: { title: string; text: stri
       <textarea required name="message" rows={5} maxLength={4000} placeholder="Tell us about your project: location, type, size..." className={`${input} sm:col-span-2`} />
       {status === 'error' && <p className="text-sm text-red-600 sm:col-span-2">Could not send your message. Please try WhatsApp or call us.</p>}
       <button disabled={status === 'sending'} className="btn-gold disabled:opacity-60 sm:col-span-2">
-        {status === 'sending' ? 'Sending…' : <>Send Message <ArrowRight className="size-4" /></>}
+        {status === 'sending' ? 'Sending…' : 'Send Message'}
       </button>
     </form>
   );
