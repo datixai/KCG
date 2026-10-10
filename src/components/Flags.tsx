@@ -1,4 +1,4 @@
-// Small inline flags — Windows doesn't draw flag emoji, and there is no emoji for the AJK flag
+// Small inline flags. Windows doesn't draw flag emoji, and there is no emoji for the AJK flag
 type Props = { className?: string };
 
 export function AjkFlag({ className }: Props) {

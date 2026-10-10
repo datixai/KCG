@@ -29,7 +29,7 @@ export default function Dashboard() {
       <div className="grid gap-4 sm:grid-cols-3">
         {cards.map((c) => (
           <Link key={c.label} href={c.href} className="rounded-2xl border border-white/10 bg-gradient-to-br from-gold/10 to-transparent p-6 transition hover:border-gold/50">
-            <div className="font-display text-4xl font-bold text-gold">{c.value ?? '–'}</div>
+            <div className="font-display text-4xl font-bold text-gold">{c.value ?? '...'}</div>
             <div className="mt-1 text-sm text-neutral-400">{c.label}</div>
           </Link>
         ))}

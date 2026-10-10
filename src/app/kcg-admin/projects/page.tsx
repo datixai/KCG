@@ -6,7 +6,7 @@ export default function ProjectsAdmin() {
     <CollectionManager
       collectionName="projects"
       title="Projects"
-      emptyHint="No projects yet — the website is showing sample projects. Click Add to create your first one."
+      emptyHint="No projects yet. The website is showing sample projects. Click Add to create your first one."
       defaults={{ title: '', location: '', category: 'Residential', image: '', description: '' }}
       fields={[
         { name: 'title', label: 'Title', type: 'text' },

@@ -11,8 +11,8 @@ import ImageUpload from '@/components/admin/ImageUpload';
 type Kind = 'text' | 'textarea' | 'title' | 'image' | 'video' | 'number' | 'list' | 'images';
 type Field = { path: string; label: string; kind?: Kind };
 
-const TITLE_HINT = 'One heading line per line — the last line shows in gold.';
-const VIDEO_HINT = 'Path of a video in the project (e.g. /videos/hero-site.mp4). Videos are too large to upload here — send new ones to your developer.';
+const TITLE_HINT = 'One heading line per line. The last line shows in gold.';
+const VIDEO_HINT = 'Path of a video in the project (e.g. /videos/hero-site.mp4). Videos are too large to upload here, so send new ones to your developer.';
 
 // Repeated items (promises, stats, reasons) get one field set per item
 const repeat = (base: string, count: number, make: (p: string, n: number) => Field[]) =>
@@ -30,24 +30,24 @@ const groups: { title: string; fields: Field[] }[] = [
     { path: 'hero.poster', label: 'Image shown while the video loads', kind: 'image' },
   ] },
   { title: 'Promises strip', fields: repeat('promises', 4, (p, n) => [
-    { path: `${p}.title`, label: `Promise ${n} — title` },
-    { path: `${p}.text`, label: `Promise ${n} — text` },
+    { path: `${p}.title`, label: `Promise ${n}: title` },
+    { path: `${p}.text`, label: `Promise ${n}: text` },
   ]) },
   { title: 'About', fields: [
     { path: 'about.eyebrow', label: 'Small heading' },
     { path: 'about.title', label: 'Title', kind: 'title' },
     { path: 'about.text', label: 'Text (leave an empty line between paragraphs)', kind: 'textarea' },
     { path: 'about.badge', label: 'Rotating badge text' },
-    { path: 'about.cardTitle', label: 'Green card — first line' },
-    { path: 'about.cardHighlight', label: 'Green card — gold line' },
+    { path: 'about.cardTitle', label: 'Green card: first line' },
+    { path: 'about.cardHighlight', label: 'Green card: gold line' },
     { path: 'about.video', label: 'Main video', kind: 'video' },
     { path: 'about.poster', label: 'Image shown while the video loads (also the stats background)', kind: 'image' },
     { path: 'about.image', label: 'Small overlapping photo', kind: 'image' },
   ] },
   { title: 'Stats counters', fields: repeat('stats', 4, (p, n) => [
-    { path: `${p}.value`, label: `Stat ${n} — number`, kind: 'number' },
-    { path: `${p}.suffix`, label: `Stat ${n} — sign after number (+, %)` },
-    { path: `${p}.label`, label: `Stat ${n} — label` },
+    { path: `${p}.value`, label: `Stat ${n}: number`, kind: 'number' },
+    { path: `${p}.suffix`, label: `Stat ${n}: sign after number (+, %)` },
+    { path: `${p}.label`, label: `Stat ${n}: label` },
   ]) },
   { title: 'Services heading', fields: [
     { path: 'services.title', label: 'Title', kind: 'title' },
@@ -70,8 +70,8 @@ const groups: { title: string; fields: Field[] }[] = [
     { path: 'why.title', label: 'Title', kind: 'title' },
     { path: 'why.image', label: 'Background photo', kind: 'image' },
     ...repeat('why.reasons', 4, (p, n) => [
-      { path: `${p}.title`, label: `Reason ${n} — title` },
-      { path: `${p}.text`, label: `Reason ${n} — text` },
+      { path: `${p}.title`, label: `Reason ${n}: title` },
+      { path: `${p}.text`, label: `Reason ${n}: text` },
     ]),
   ] },
   { title: 'On-site gallery', fields: [
@@ -123,7 +123,7 @@ export default function HomeAdmin() {
     setSaving(true);
     try {
       await setDoc(doc(db, 'settings', 'home'), content);
-      toast.success('Saved — live on the website within a minute');
+      toast.success('Saved. Live on the website within a minute.');
     } catch (err) {
       toast.error(friendlyError(err), { duration: 8000 });
     } finally {

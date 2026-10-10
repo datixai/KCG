@@ -46,7 +46,7 @@ export default function CollectionManager({
     try {
       if (id) await updateDoc(doc(db, collectionName, String(id)), { ...data, updatedAt: serverTimestamp() });
       else await addDoc(collection(db, collectionName), { ...data, createdAt: serverTimestamp() });
-      toast.success('Saved — live on the website within a minute');
+      toast.success('Saved. Live on the website within a minute.');
       setEditing(null);
       await load();
     } catch (err) {

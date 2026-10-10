@@ -2,7 +2,7 @@ import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
-// Firebase web keys are public by design — security is enforced by firestore.rules.
+// Firebase web keys are public by design; security is enforced by firestore.rules.
 // Values come from .env.local (see .env.local.example).
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

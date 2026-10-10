@@ -8,7 +8,7 @@ import type { Service, SiteSettings } from '@/types';
 
 export const SITE_URL = site.url;
 
-// Head office on the Kallar Syedan – Dadyal Road
+// Head office on the Kallar Syedan-Dadyal Road
 export const GEO = { latitude: 33.2226, longitude: 73.7108 };
 
 export const KEYWORDS = [
@@ -58,7 +58,7 @@ export const towns: Town[] = [
     region: AJK,
     blurb: 'Our head office and batching plant are in Dadyal, so we can be on any site in town the same day.',
     intro: [
-      'Kashmir Construction Group is based in Dadyal. Our office and concrete batching plant are on the Kallar Syedan – Dadyal Road, so projects in Dadyal get our quickest response, our own ready-mix concrete and a team that knows the local ground and suppliers.',
+      'Kashmir Construction Group is based in Dadyal. Our office and concrete batching plant are on the Kallar Syedan-Dadyal Road, so projects in Dadyal get our quickest response, our own ready-mix concrete and a team that knows the local ground and suppliers.',
       'We build new family homes, shops and plazas, extensions and renovations across Dadyal and the villages around it, and we manage the whole job from drawings and approvals to the final finish.',
     ],
     points: [
@@ -274,7 +274,7 @@ export function businessJsonLd(settings: SiteSettings, services: Service[]) {
         currenciesAccepted: 'PKR, GBP',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Paagliyan, Dhangali, Kallar Syedan – Dadyal Road',
+          streetAddress: 'Paagliyan, Dhangali, Kallar Syedan-Dadyal Road',
           addressLocality: 'Dadyal',
           addressRegion: 'Azad Jammu and Kashmir',
           addressCountry: 'PK',

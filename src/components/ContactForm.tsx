@@ -57,7 +57,7 @@ export default function ContactForm({ title, text }: { title: string; text: stri
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
       <input required name="name" maxLength={150} placeholder="Your Name" className={input} />
       <input required name="phone" type="tel" maxLength={30} placeholder="Phone / WhatsApp" className={input} />
-      <textarea required name="message" rows={5} maxLength={4000} placeholder="Tell us about your project — location, type, size..." className={`${input} sm:col-span-2`} />
+      <textarea required name="message" rows={5} maxLength={4000} placeholder="Tell us about your project: location, type, size..." className={`${input} sm:col-span-2`} />
       {status === 'error' && <p className="text-sm text-red-600 sm:col-span-2">Could not send your message. Please try WhatsApp or call us.</p>}
       <button disabled={status === 'sending'} className="btn-gold disabled:opacity-60 sm:col-span-2">
         {status === 'sending' ? 'Sending…' : <>Send Message <ArrowRight className="size-4" /></>}

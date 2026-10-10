@@ -65,7 +65,7 @@ export const defaultHome: HomeContent = {
   areas: {
     eyebrow: 'Where We Work',
     title: 'Serving Kashmir\n& Beyond',
-    text: 'From our base in Dadyal we deliver projects across Azad Kashmir and neighbouring Punjab — and we are growing into new regions every year.',
+    text: 'From our base in Dadyal we deliver projects across Azad Kashmir and neighbouring Punjab, and we are growing into new regions every year.',
     headOffice: 'Dadyal',
     list: 'Dadyal, Mirpur, Chakswari, Kotli, Jhelum, Dina',
     image: '/images/site/plant-collage.webp',
@@ -98,7 +98,7 @@ export const defaultHome: HomeContent = {
   cta: {
     eyebrow: "Let's Build Together",
     title: 'Turning Visions\nInto Reality',
-    text: "Tell us about your plot, your plans and your budget — we'll take it from foundation to finish.",
+    text: "Tell us about your plot, your plans and your budget. We'll take it from foundation to finish.",
     button: 'Get a Quote',
     perks: 'Free Consultation, Expert Advice, Reliable Service',
     video: '/videos/mixer-orbit.mp4',

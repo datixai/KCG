@@ -37,7 +37,7 @@ export default function SettingsAdmin() {
     setSaving(true);
     try {
       await setDoc(doc(db, 'settings', 'site'), settings);
-      toast.success('Saved — live on the website within a minute');
+      toast.success('Saved. Live on the website within a minute.');
     } catch (err) {
       toast.error(friendlyError(err), { duration: 8000 });
     } finally {

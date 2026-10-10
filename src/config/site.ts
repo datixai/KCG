@@ -11,7 +11,7 @@ export const site = {
   whatsapp: '447440392017',
   email: 'info@kashmirconstructiongroup.com',
   url: 'https://kashmirconstructiongroup.com',
-  address: 'Paagliyan, Dhangali, Kallar Syedan – Dadyal Rd, Dadyal, Azad Jammu Kashmir',
+  address: 'Paagliyan, Dhangali, Kallar Syedan-Dadyal Rd, Dadyal, Azad Jammu Kashmir',
   social: {
     tiktok: 'https://www.tiktok.com/@kashmirconstructiongroup',
   },

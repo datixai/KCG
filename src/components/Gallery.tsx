@@ -23,7 +23,7 @@ export default function Gallery({ content }: { content: HomeContent['gallery'] }
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionTitle title={content.title} />
-          <p className="max-w-xs border-l-2 border-gold pl-4 text-sm text-charcoal/65">Real photos from our own sites — no stock images.</p>
+          <p className="max-w-xs border-l-2 border-gold pl-4 text-sm text-charcoal/65">Real photos from our own sites, no stock images.</p>
         </div>
         <div data-stagger className="mt-14 grid grid-flow-dense auto-rows-[160px] grid-cols-2 gap-3 sm:auto-rows-[200px] sm:grid-cols-4 sm:gap-4">
           {content.images.map((src, i) => {

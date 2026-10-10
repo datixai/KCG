@@ -5,7 +5,7 @@
 const PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
 const API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
 
-// Raster formats only — SVG can contain scripts, so it is never served from our domain
+// Raster formats only. SVG can contain scripts, so it is never served from our domain
 const DATA_URL = /^data:(image\/(?:jpeg|png|webp|gif|avif));base64,([A-Za-z0-9+/=]+)$/;
 
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {

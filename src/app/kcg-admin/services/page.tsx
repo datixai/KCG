@@ -7,7 +7,7 @@ export default function ServicesAdmin() {
     <CollectionManager
       collectionName="services"
       title="Services"
-      emptyHint="No services yet — the website is showing the 6 built-in services. Add your own to replace them."
+      emptyHint="No services yet. The website is showing the 6 built-in services. Add your own to replace them."
       defaults={{ title: '', text: '', icon: 'HardHat', active: true }}
       fields={[
         { name: 'title', label: 'Title', type: 'text' },

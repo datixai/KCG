@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  /* KCG brand — deep forest green + mustard gold (from the client's design) */
+  /* KCG brand: deep forest green + mustard gold (from the client's design) */
   --color-forest-deep: #0a2a1f;
   --color-forest: #0f3b2c;
   --color-forest-light: #17503c;
