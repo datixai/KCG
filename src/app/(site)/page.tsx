@@ -5,6 +5,7 @@ import Stats from '@/components/Stats';
 import Services from '@/components/Services';
 import Projects from '@/components/Projects';
 import Areas from '@/components/Areas';
+import Team from '@/components/Team';
 import WhyKcg from '@/components/WhyKcg';
 import Gallery from '@/components/Gallery';
 import CallToAction from '@/components/CallToAction';
@@ -24,6 +25,7 @@ export default async function Home() {
       <Hero content={home.hero} />
       <Promises items={home.promises} />
       <About content={home.about} />
+      <Team content={home.team} />
       <Stats stats={home.stats} background={home.about.poster} />
       <Services services={services} content={home.services} />
       <Projects projects={projects} content={home.projects} />

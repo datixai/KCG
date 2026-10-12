@@ -2,13 +2,13 @@
 import { useEffect, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import toast from 'react-hot-toast';
-import { ChevronDown, Plus, Trash2 } from 'lucide-react';
+import { ArrowDown, ArrowUp, ChevronDown, Plus, Trash2 } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { friendlyError } from '@/lib/errors';
-import { defaultHome, mergeHome, type HomeContent } from '@/lib/home';
+import { defaultHome, mergeHome, type HomeContent, type TeamMember } from '@/lib/home';
 import ImageUpload from '@/components/admin/ImageUpload';
 
-type Kind = 'text' | 'textarea' | 'title' | 'image' | 'video' | 'number' | 'list' | 'images';
+type Kind = 'text' | 'textarea' | 'title' | 'image' | 'video' | 'number' | 'list' | 'images' | 'members';
 type Field = { path: string; label: string; kind?: Kind };
 
 const TITLE_HINT = 'One heading line per line. The last line shows in gold.';
@@ -43,6 +43,12 @@ const groups: { title: string; fields: Field[] }[] = [
     { path: 'about.video', label: 'Main video', kind: 'video' },
     { path: 'about.poster', label: 'Image shown while the video loads (also the stats background)', kind: 'image' },
     { path: 'about.image', label: 'Small overlapping photo', kind: 'image' },
+  ] },
+  { title: 'Our Team', fields: [
+    { path: 'team.eyebrow', label: 'Small heading' },
+    { path: 'team.title', label: 'Title', kind: 'title' },
+    { path: 'team.text', label: 'Text next to the title', kind: 'textarea' },
+    { path: 'team.members', label: 'People (remove everyone to hide this section)', kind: 'members' },
   ] },
   { title: 'Stats counters', fields: repeat('stats', 4, (p, n) => [
     { path: `${p}.value`, label: `Stat ${n}: number`, kind: 'number' },
@@ -149,6 +155,36 @@ export default function HomeAdmin() {
             </div>
           ))}
           <button type="button" onClick={() => set(f.path, [...images, ''])} className="flex items-center gap-1 text-sm text-gold hover:underline"><Plus className="size-4" /> Add photo</button>
+        </div>
+      );
+    }
+    if (kind === 'members') {
+      const members = (value as TeamMember[]) ?? [];
+      const update = (list: TeamMember[]) => set(f.path, list);
+      const patch = (i: number, key: keyof TeamMember, v: string) => update(members.map((m, j) => (j === i ? { ...m, [key]: v } : m)));
+      const move = (i: number, to: number) => { const list = [...members]; [list[i], list[to]] = [list[to], list[i]]; update(list); };
+      return (
+        <div className="space-y-4">
+          {members.map((m, i) => (
+            <div key={i} className="space-y-3 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-sm font-semibold text-white">{m.name || `Person ${i + 1}`}</span>
+                <div className="flex items-center gap-1">
+                  <button type="button" disabled={i === 0} onClick={() => move(i, i - 1)} className="p-2 text-neutral-500 hover:text-gold disabled:opacity-30" aria-label="Move up"><ArrowUp className="size-4" /></button>
+                  <button type="button" disabled={i === members.length - 1} onClick={() => move(i, i + 1)} className="p-2 text-neutral-500 hover:text-gold disabled:opacity-30" aria-label="Move down"><ArrowDown className="size-4" /></button>
+                  <button type="button" onClick={() => { if (confirm(`Remove ${m.name || 'this person'}?`)) update(members.filter((_, j) => j !== i)); }} className="p-2 text-neutral-500 hover:text-red-400" aria-label="Remove person"><Trash2 className="size-4" /></button>
+                </div>
+              </div>
+              <input placeholder="Name" value={m.name} onChange={(e) => patch(i, 'name', e.target.value)} className="admin-input" />
+              <input placeholder="Role (e.g. Proprietor)" value={m.role} onChange={(e) => patch(i, 'role', e.target.value)} className="admin-input" />
+              <textarea rows={3} placeholder="Two or three lines about this person" value={m.bio} onChange={(e) => patch(i, 'bio', e.target.value)} className="admin-input" />
+              <div>
+                <span className="mb-1.5 block text-xs text-neutral-500">Photo (portrait works best; the face should be in the top half)</span>
+                <ImageUpload value={m.image} onChange={(v) => patch(i, 'image', v)} />
+              </div>
+            </div>
+          ))}
+          <button type="button" onClick={() => update([...members, { name: '', role: '', bio: '', image: '' }])} className="flex items-center gap-1 text-sm text-gold hover:underline"><Plus className="size-4" /> Add person</button>
         </div>
       );
     }

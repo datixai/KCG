@@ -4,6 +4,8 @@
  * Multi-line "title" fields: one heading line per line, the last line is gold.
  * Comma-separated fields become lists.
  */
+export interface TeamMember { name: string; role: string; bio: string; image: string }
+
 export interface HomeContent {
   hero: { eyebrow: string; title: string; text: string; primaryCta: string; secondaryCta: string; location: string; video: string; videoMobile: string; poster: string };
   promises: { title: string; text: string }[];
@@ -12,6 +14,7 @@ export interface HomeContent {
   services: { eyebrow: string; title: string; text: string };
   projects: { eyebrow: string; title: string };
   areas: { eyebrow: string; title: string; text: string; headOffice: string; list: string; image: string };
+  team: { eyebrow: string; title: string; text: string; members: TeamMember[] };
   why: { eyebrow: string; title: string; image: string; reasons: { title: string; text: string }[] };
   gallery: { eyebrow: string; title: string; images: string[] };
   cta: { eyebrow: string; title: string; text: string; button: string; perks: string; video: string; poster: string };
@@ -69,6 +72,25 @@ export const defaultHome: HomeContent = {
     headOffice: 'Dadyal',
     list: 'Dadyal, Mirpur, Chakswari, Kotli, Jhelum, Dina',
     image: '/images/site/plant-collage.webp',
+  },
+  team: {
+    eyebrow: 'Our Team',
+    title: 'The People\nBehind KCG',
+    text: 'A local team with roots in Dadyal and links to the UK, so every client gets someone who understands both their plans and the ground they build on.',
+    members: [
+      {
+        name: 'Akeeb Yakoob',
+        role: 'Proprietor',
+        bio: 'Akeeb leads Kashmir Construction Group and sets the standard for every project, from the first site visit to the final handover. He oversees our Dadyal batching plant and is committed to building a stronger, more modern Kashmir.',
+        image: '/images/team/akeeb-yakoob.webp',
+      },
+      {
+        name: 'Bilal Hussain',
+        role: 'Director, Client Relations',
+        bio: 'Bilal looks after KCG’s clients and partners, including families in the UK building homes back in Azad Kashmir. He is the first point of contact for new enquiries and keeps every client updated from start to finish.',
+        image: '/images/team/bilal-hussain.webp',
+      },
+    ],
   },
   why: {
     eyebrow: 'Why Choose KCG',
@@ -132,7 +154,14 @@ export function mergeHome(saved: unknown, base: unknown = defaultHome): HomeCont
     }
     return typeof b === 'number' ? Number(s) || 0 : s;
   };
-  return merge(base, saved) as HomeContent;
+  const out = merge(base, saved) as HomeContent;
+  // Team members are a free-form list: use exactly what was saved (no filling gaps from the
+  // default people), so members can be added or removed, and an empty list hides the section.
+  const team = isObj(saved) && isObj(saved.team) ? saved.team.members : undefined;
+  if (Array.isArray(team)) {
+    out.team.members = team.filter(isObj).map((m) => ({ name: String(m.name ?? ''), role: String(m.role ?? ''), bio: String(m.bio ?? ''), image: String(m.image ?? '') })).filter((m) => m.name.trim());
+  }
+  return out;
 }
 
 export const lines = (s: string) => s.split('\n').map((l) => l.trim()).filter(Boolean);
