@@ -10,7 +10,7 @@ import { defaultProjects, defaultServices } from './defaults';
  * touch the exact items they name, so the client's own edits are never overwritten.
  * A marker (settings/content-seeded) records the last update applied.
  */
-const LATEST = 5;
+const LATEST = 6;
 
 type Update = (batch: WriteBatch, previousVersion: number) => Promise<number>;
 
@@ -73,10 +73,30 @@ const landscapeBungalow: Update = async (batch) => {
   return changed;
 };
 
+// 6: the bungalow's 3D evening visualisation (only where the video/photo/text are still the developer's)
+const bungalow3d: Update = async (batch) => {
+  const OUR_VIDEOS = ['/videos/projects/hillside-bungalow-mirpur.mp4', '/videos/projects/hillside-bungalow-mirpur-landscape.mp4'];
+  const OUR_PHOTOS = ['/images/projects/hillside-bungalow-mirpur.webp', '/images/projects/hillside-bungalow-mirpur-landscape.webp', ''];
+  const OLD_TEXT = 'A two-storey family bungalow on a hillside plot in Mirpur District, with a wide terrace, strong boundary walls and a landscaped driveway that makes the most of the views. Drone footage of the home.';
+  const snap = await getDocs(collection(db, 'projects'));
+  let changed = 0;
+  snap.docs.filter((d) => OUR_VIDEOS.includes(d.data().video)).forEach((d) => {
+    const data = d.data();
+    batch.update(d.ref, {
+      video: '/videos/projects/hillside-bungalow-3d.mp4',
+      ...(OUR_PHOTOS.includes(data.image ?? '') ? { image: '/images/projects/hillside-bungalow-3d.webp' } : {}),
+      ...(data.description === OLD_TEXT ? { description: 'A two-storey family bungalow on a hillside plot in Mirpur District, with a wide terrace, strong boundary walls and a landscaped driveway that makes the most of the views. The video is a 3D visualisation of the home.' } : {}),
+    });
+    changed++;
+  });
+  return changed;
+};
+
 const updates: [version: number, run: Update][] = [
   [3, initialImport],
   [4, addVideoProjects],
   [5, landscapeBungalow],
+  [6, bungalow3d],
 ];
 
 /** Applies any updates not yet run. Returns the number of items added or changed. */
