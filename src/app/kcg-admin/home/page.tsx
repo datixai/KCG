@@ -176,7 +176,7 @@ export default function HomeAdmin() {
                 </div>
               </div>
               <input placeholder="Name" value={m.name} onChange={(e) => patch(i, 'name', e.target.value)} className="admin-input" />
-              <input placeholder="Role (e.g. Proprietor)" value={m.role} onChange={(e) => patch(i, 'role', e.target.value)} className="admin-input" />
+              <textarea rows={3} placeholder={'Job titles, one per line\n(e.g. Founder & Proprietor)'} value={m.role} onChange={(e) => patch(i, 'role', e.target.value)} className="admin-input" />
               <textarea rows={3} placeholder="Two or three lines about this person" value={m.bio} onChange={(e) => patch(i, 'bio', e.target.value)} className="admin-input" />
               <div>
                 <span className="mb-1.5 block text-xs text-neutral-500">Photo (portrait works best; the face should be in the top half)</span>

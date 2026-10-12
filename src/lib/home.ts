@@ -4,6 +4,7 @@
  * Multi-line "title" fields: one heading line per line, the last line is gold.
  * Comma-separated fields become lists.
  */
+/** `role` may hold several titles, one per line. */
 export interface TeamMember { name: string; role: string; bio: string; image: string }
 
 export interface HomeContent {
@@ -80,15 +81,15 @@ export const defaultHome: HomeContent = {
     members: [
       {
         name: 'Akeeb Yakoob',
-        role: 'Proprietor',
-        bio: 'Akeeb leads Kashmir Construction Group and sets the standard for every project, from the first site visit to the final handover. He oversees our Dadyal batching plant and is committed to building a stronger, more modern Kashmir.',
+        role: 'Founder & Proprietor of KCG\nOperations Manager\nHead of Logistics',
+        bio: 'Akeeb founded Kashmir Construction Group and runs its day-to-day operations, from site planning to logistics and our Dadyal batching plant. He makes sure materials, machinery and teams are in the right place at the right time, so every project stays on schedule.',
         image: '/images/team/akeeb-yakoob.webp',
       },
       {
-        name: 'Bilal Hussain',
-        role: 'Director, Client Relations',
-        bio: 'Bilal looks after KCG’s clients and partners, including families in the UK building homes back in Azad Kashmir. He is the first point of contact for new enquiries and keeps every client updated from start to finish.',
-        image: '/images/team/bilal-hussain.webp',
+        name: 'Bilaal Hussain',
+        role: 'Co-Founder of KCG\nHead of Marketing & Admin\nCompany Bookkeeper',
+        bio: 'Bilaal co-founded KCG and leads its marketing, administration and accounts. He is often the first point of contact for new clients, including families in the UK building homes back in Azad Kashmir, and keeps every project well organised from start to finish.',
+        image: '/images/team/bilaal-hussain.webp',
       },
     ],
   },
