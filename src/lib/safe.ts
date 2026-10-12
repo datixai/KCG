@@ -18,6 +18,12 @@ export function safeEmail(value?: string): string {
   return /^[^\s@<>"'()\\,;:]+@[^\s@<>"'()\\,;:]+\.[a-z]{2,}$/i.test(v) ? v : '';
 }
 
+/** The video id from a YouTube link (watch, youtu.be, shorts or embed), or '' if it isn't one. */
+export function youtubeId(url: string | undefined): string {
+  const m = String(url ?? '').match(/^https:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : '';
+}
+
 /** Image/video source: our own files, https links or inline image data, nothing else. */
 export function safeSrc(value?: string): string {
   const v = (value ?? '').trim();

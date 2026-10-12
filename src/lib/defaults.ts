@@ -10,7 +10,7 @@ export const defaultSettings: SiteSettings = {
   email: site.email,
   address: site.address,
   facebook: '',
-  instagram: '',
+  instagram: 'https://www.instagram.com/kashmirconstructiongroup/',
   tiktok: site.social.tiktok,
   youtube: '',
   linkedin: '',
@@ -25,8 +25,15 @@ export const defaultServices: Service[] = [
   { id: 'd6', icon: 'Hammer', title: 'Renovations & Extensions', text: 'Transforming and improving existing properties.', image: '/images/services/finishing.webp' },
 ];
 
-// The first four are KCG's own batching-plant site; the rest are example photos to replace from the admin panel
+// KCG's two video projects, then its own batching-plant site, then example photos to replace from the admin panel
+export const MARQUEE_TEXT =
+  'A modern marquee and wedding hall in Dadyal, designed with a grand illuminated entrance, a landscaped approach and spacious event halls for weddings and large functions. The video shows the 3D design visualisation of the project.';
+export const BUNGALOW_TEXT =
+  'A two-storey family bungalow on a hillside plot in Mirpur District, with a wide terrace, strong boundary walls and a landscaped driveway that makes the most of the views. Drone footage of the home.';
+
 export const defaultProjects: Project[] = [
+  { id: 'p1', title: 'Dadyal Marquee & Wedding Hall', location: 'Dadyal, Mirpur District, AJK', category: 'Commercial', image: '/images/projects/dadyal-marquee-wedding-hall.webp', video: '/videos/projects/dadyal-marquee-wedding-hall.mp4', description: MARQUEE_TEXT },
+  { id: 'p2', title: 'Hillside Bungalow', location: 'Mirpur District, AJK', category: 'Residential', image: '/images/projects/hillside-bungalow-mirpur.webp', video: '/videos/projects/hillside-bungalow-mirpur.mp4', description: BUNGALOW_TEXT },
   { id: 'd1', title: 'Concrete Batching Plant', location: 'Dadyal, AJK', category: 'Industrial', image: '/images/site/plant-sunrise.webp' },
   { id: 'd2', title: 'Plant Installation', location: 'Dadyal, AJK', category: 'Industrial', image: '/images/site/site-install-aerial.webp' },
   { id: 'd3', title: 'Aggregate & Conveyor System', location: 'Dadyal, AJK', category: 'Industrial', image: '/images/site/conveyor-sunset.webp' },

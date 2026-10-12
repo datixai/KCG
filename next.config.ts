@@ -13,7 +13,7 @@ const csp = [
   "font-src 'self'",
   "media-src 'self' https:",
   `connect-src 'self' https://*.googleapis.com${isDev ? ' ws: wss:' : ''}`,
-  `frame-src ${authDomain ? `https://${authDomain}` : "'none'"}`,
+  `frame-src https://www.youtube-nocookie.com${authDomain ? ` https://${authDomain}` : ''}`,
   "frame-ancestors 'none'",
   "object-src 'none'",
   "base-uri 'self'",

@@ -8,8 +8,8 @@ import ImageUpload from './ImageUpload';
 import { friendlyError } from '@/lib/errors';
 
 export type Field =
-  | { name: string; label: string; type: 'text' | 'textarea' | 'number' | 'image' | 'checkbox' }
-  | { name: string; label: string; type: 'select'; options: string[] };
+  | { name: string; label: string; type: 'text' | 'textarea' | 'number' | 'image' | 'checkbox' | 'images' | 'link'; hint?: string }
+  | { name: string; label: string; type: 'select'; options: string[]; hint?: string };
 
 type Row = { id: string } & Record<string, unknown>;
 
@@ -116,6 +116,18 @@ export default function CollectionManager({
                   <textarea rows={4} value={String(editing[f.name] ?? '')} onChange={(e) => set(f.name, e.target.value)} className="admin-input" />
                 ) : f.type === 'image' ? (
                   <ImageUpload value={String(editing[f.name] ?? '')} onChange={(v) => set(f.name, v)} />
+                ) : f.type === 'images' ? (
+                  <div className="space-y-3">
+                    {((editing[f.name] as string[] | undefined) ?? []).map((src, i, all) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <div className="flex-1"><ImageUpload value={src} onChange={(v) => set(f.name, all.map((x, j) => (j === i ? v : x)))} /></div>
+                        <button type="button" onClick={() => set(f.name, all.filter((_, j) => j !== i))} className="p-2 text-neutral-500 hover:text-red-400" aria-label="Remove photo"><Trash2 className="size-4" /></button>
+                      </div>
+                    ))}
+                    <button type="button" onClick={() => set(f.name, [...((editing[f.name] as string[] | undefined) ?? []), ''])} className="flex items-center gap-1 text-sm text-gold hover:underline"><Plus className="size-4" /> Add photo</button>
+                  </div>
+                ) : f.type === 'link' ? (
+                  <input type="text" value={String(editing[f.name] ?? '')} onChange={(e) => set(f.name, e.target.value.trim())} className="admin-input" />
                 ) : f.type === 'select' ? (
                   <select value={String(editing[f.name] ?? '')} onChange={(e) => set(f.name, e.target.value)} className="admin-input">
                     {f.options.map((o) => <option key={o} value={o}>{o}</option>)}
@@ -131,6 +143,7 @@ export default function CollectionManager({
                     className="admin-input"
                   />
                 )}
+                {f.hint && <span className="block text-xs text-neutral-600">{f.hint}</span>}
               </label>
             ))}
             <div className="flex justify-end gap-2 pt-2">

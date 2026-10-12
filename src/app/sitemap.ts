@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   return [
     { url: site.url, lastModified, changeFrequency: 'weekly', priority: 1 },
+    { url: `${site.url}/projects`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
     ...towns.map((t, i) => ({
       url: `${site.url}${townPath(t)}`,
       lastModified,

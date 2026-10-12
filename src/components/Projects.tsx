@@ -27,7 +27,8 @@ function Card({ p, i }: { p: Project; i: number }) {
 }
 
 /** Projects glide continuously from right to left, in order (01, 02, …); hovering pauses them. */
-export default function Projects({ projects, content }: { projects: Project[]; content: HomeContent['projects'] }) {
+export default function Projects({ projects: all, content }: { projects: Project[]; content: HomeContent['projects'] }) {
+  const projects = all.filter((p) => p.showOnHome !== false);
   // Repeat short lists so the moving row is always wider than the screen
   const row = projects.length ? Array.from({ length: Math.ceil(5 / projects.length) }, () => projects).flat() : [];
   const seconds = Math.max(30, row.length * 7);
