@@ -27,7 +27,7 @@ export default function Team({ content }: { content: HomeContent['team'] }) {
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <h3 className="font-display text-2xl font-bold uppercase leading-tight text-white">{m.name}</h3>
                   {m.role && (
-                    <ul className="mt-1.5 space-y-0.5">
+                    <ul className="mt-1.5 list-disc space-y-0.5 pl-4 marker:text-gold">
                       {m.role.split('\n').map((r) => r.trim()).filter(Boolean).map((r) => <li key={r} className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold">{r}</li>)}
                     </ul>
                   )}

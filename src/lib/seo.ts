@@ -5,6 +5,7 @@
  */
 import { site } from '@/config/site';
 import type { Service, SiteSettings } from '@/types';
+import type { TeamMember } from './home';
 
 export const SITE_URL = site.url;
 
@@ -242,6 +243,8 @@ export const townPath = (t: Town) => `/construction-company/${t.slug}`;
 
 /** General questions shown on the home page (and marked up as FAQPage). */
 export const homeFaqs = [
+  { q: 'What is Kashmir Construction Group (KCG)?', a: 'Kashmir Construction Group (KCG) is a construction and development company based in Dadyal, Azad Kashmir. It builds homes, commercial buildings and infrastructure, and runs its own concrete batching plant supplying ready-mix concrete across Dadyal, Mirpur, Kotli and nearby towns.' },
+  { q: 'Who founded Kashmir Construction Group?', a: 'KCG was founded by Akeeb Yakoob, its Founder and Proprietor, who also serves as Operations Manager and Head of Logistics. Bilaal Hussain is Co-Founder and Head of Marketing & Admin.' },
   { q: 'Where does Kashmir Construction Group work?', a: `We are based in Dadyal and build across Azad Kashmir and nearby Punjab, including ${towns.map((t) => t.name).join(', ')}.` },
   { q: 'What services does KCG offer?', a: 'Residential construction, commercial buildings, infrastructure, ready-mix concrete and batching plants, project management, and renovations and extensions.' },
   { q: 'Can I build a house in Azad Kashmir while living in the UK?', a: 'Yes. Many of our clients live in the UK and abroad. We agree the design and price up front and send regular photo and video updates on WhatsApp.' },
@@ -252,9 +255,21 @@ export const homeFaqs = [
 
 const ORG_ID = `${SITE_URL}/#organization`;
 
-export function businessJsonLd(settings: SiteSettings, services: Service[]) {
+// Known public profiles, used until the client fills them in under Admin > Settings
+const DEFAULT_PROFILES = ['https://www.instagram.com/kashmirconstructiongroup/', 'https://www.tiktok.com/@kashmirconstructiongroup'];
+
+export function businessJsonLd(settings: SiteSettings, services: Service[], team: TeamMember[] = []) {
   const phones = [settings.phoneDisplay, settings.phone2Display].filter(Boolean).map((p) => p.replace(/[^\d+]/g, ''));
-  const sameAs = [settings.facebook, settings.instagram, settings.tiktok, settings.youtube, settings.linkedin].filter((u) => /^https:\/\//.test(u || ''));
+  const sameAs = [...new Set([settings.facebook, settings.instagram, settings.tiktok, settings.youtube, settings.linkedin, ...DEFAULT_PROFILES].filter((u) => /^https:\/\//.test(u || '')))];
+  const person = (m: TeamMember) => ({
+    '@type': 'Person',
+    name: m.name,
+    jobTitle: m.role.split('\n').map((r) => r.trim()).filter(Boolean).join(', '),
+    ...(m.bio && { description: m.bio }),
+    ...(m.image.startsWith('/') && { image: `${SITE_URL}${m.image}` }),
+    worksFor: { '@id': ORG_ID },
+  });
+  const founders = team.filter((m) => /founder/i.test(m.role)).map(person);
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -262,14 +277,19 @@ export function businessJsonLd(settings: SiteSettings, services: Service[]) {
         '@type': ['GeneralContractor', 'LocalBusiness'],
         '@id': ORG_ID,
         name: site.name,
-        alternateName: ['KCG', 'Kashmir Construction Group Dadyal', 'KCG Azad Kashmir'],
+        alternateName: ['KCG', 'Kashmir Construction Group Dadyal', 'KCG Azad Kashmir', 'KCG Dadyal'],
+        slogan: 'The Foundation of Modern Kashmir',
+        disambiguatingDescription:
+          'Kashmir Construction Group (KCG) is a construction company headquartered in Dadyal, Azad Jammu and Kashmir, Pakistan, founded by Akeeb Yakoob and co-founded by Bilaal Hussain. It is a separate company from Kashmir Builders and Developers (Rawalpindi), Kashmir Pre-Engineered Construction (KAPEC), JK Builders & Developers and other similarly named firms.',
+        foundingLocation: { '@type': 'Place', name: 'Dadyal, Azad Jammu and Kashmir, Pakistan' },
         description: site.description,
         url: SITE_URL,
         logo: `${SITE_URL}/brand/logo-full-light.png`,
         image: `${SITE_URL}/og-image.jpg`,
         telephone: phones[0],
         email: settings.email || site.email,
-        ...(settings.owner && { founder: { '@type': 'Person', name: settings.owner } }),
+        ...(founders.length ? { founder: founders } : settings.owner ? { founder: { '@type': 'Person', name: settings.owner } } : {}),
+        ...(team.length && { employee: team.map(person) }),
         priceRange: '$$',
         currenciesAccepted: 'PKR, GBP',
         address: {
@@ -295,7 +315,7 @@ export function businessJsonLd(settings: SiteSettings, services: Service[]) {
           name: 'Construction services',
           itemListElement: services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.title, description: s.text } })),
         },
-        ...(sameAs.length && { sameAs }),
+        sameAs,
       },
       {
         '@type': 'WebSite',

@@ -82,13 +82,13 @@ export const defaultHome: HomeContent = {
       {
         name: 'Akeeb Yakoob',
         role: 'Founder & Proprietor of KCG\nOperations Manager\nHead of Logistics',
-        bio: 'Akeeb founded Kashmir Construction Group and runs its day-to-day operations, from site planning to logistics and our Dadyal batching plant. He makes sure materials, machinery and teams are in the right place at the right time, so every project stays on schedule.',
-        image: '/images/team/akeeb.webp',
+        bio: 'Akeeb is the Founder and Proprietor of Kashmir Construction Group and leads the overall direction and day-to-day operation of the business. As Operations Manager and Head of Logistics, he oversees site activity, project delivery, machinery, materials, transport and workforce coordination. He is responsible for ensuring KCG’s projects are properly organised, efficiently managed and delivered in line with the company’s standards and long-term vision.',
+        image: '/images/team/akeeb-yakoob-founder.webp',
       },
       {
         name: 'Bilaal Hussain',
         role: 'Co-Founder of KCG\nHead of Marketing & Admin\nCompany Bookkeeper',
-        bio: 'Bilaal co-founded KCG and leads its marketing, administration and accounts. He is often the first point of contact for new clients, including families in the UK building homes back in Azad Kashmir, and keeps every project well organised from start to finish.',
+        bio: 'Bilaal is Co-Founder of Kashmir Construction Group and supports the business through its marketing, administration and financial record-keeping. As Head of Marketing & Admin and Company Bookkeeper, he oversees KCG’s branding, promotional activity, internal administration and company accounts, helping to ensure the business remains organised and professionally presented as it continues to grow.',
         image: '/images/team/bilaal.webp',
       },
     ],
