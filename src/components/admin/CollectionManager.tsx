@@ -4,6 +4,7 @@ import { addDoc, collection, deleteDoc, doc, getDocs, serverTimestamp, updateDoc
 import toast from 'react-hot-toast';
 import { Pencil, Plus, Trash2, X } from 'lucide-react';
 import { db } from '@/lib/firebase';
+import { refreshSite } from '@/lib/refresh-site';
 import ImageUpload from './ImageUpload';
 import { friendlyError } from '@/lib/errors';
 
@@ -46,7 +47,8 @@ export default function CollectionManager({
     try {
       if (id) await updateDoc(doc(db, collectionName, String(id)), { ...data, updatedAt: serverTimestamp() });
       else await addDoc(collection(db, collectionName), { ...data, createdAt: serverTimestamp() });
-      toast.success('Saved. Live on the website within a minute.');
+      await refreshSite();
+      toast.success('Saved. Live on the website now.');
       setEditing(null);
       await load();
     } catch (err) {
@@ -59,7 +61,8 @@ export default function CollectionManager({
   const remove = async (row: Row) => {
     if (!confirm(`Delete "${display(row).primary}"?`)) return;
     await deleteDoc(doc(db, collectionName, row.id));
-    toast.success('Deleted');
+    await refreshSite();
+    toast.success('Deleted. Removed from the website now.');
     await load();
   };
 

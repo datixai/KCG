@@ -34,7 +34,7 @@ export default function Dashboard() {
           </Link>
         ))}
       </div>
-      <p className="mt-8 text-sm text-neutral-500">Changes you make here appear on the live website within about a minute.</p>
+      <p className="mt-8 text-sm text-neutral-500">Changes you make here appear on the live website as soon as you save.</p>
     </div>
   );
 }

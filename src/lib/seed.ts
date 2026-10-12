@@ -1,5 +1,6 @@
 import { collection, doc, getDoc, getDocs, serverTimestamp, writeBatch, type WriteBatch } from 'firebase/firestore';
 import { db } from './firebase';
+import { refreshSite } from './refresh-site';
 import { defaultProjects, defaultServices } from './defaults';
 
 /**
@@ -73,5 +74,6 @@ export async function seedDefaultContentOnce(): Promise<number> {
   for (const [v, run] of updates) if (version < v) changed += await run(batch, version);
   batch.set(marker, { version: LATEST, at: serverTimestamp() });
   await batch.commit();
+  if (changed) await refreshSite();
   return changed;
 }

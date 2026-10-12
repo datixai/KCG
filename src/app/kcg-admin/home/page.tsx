@@ -4,6 +4,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import toast from 'react-hot-toast';
 import { ArrowDown, ArrowUp, ChevronDown, Plus, Trash2 } from 'lucide-react';
 import { db } from '@/lib/firebase';
+import { refreshSite } from '@/lib/refresh-site';
 import { friendlyError } from '@/lib/errors';
 import { defaultHome, mergeHome, type HomeContent, type TeamMember } from '@/lib/home';
 import ImageUpload from '@/components/admin/ImageUpload';
@@ -129,7 +130,8 @@ export default function HomeAdmin() {
     setSaving(true);
     try {
       await setDoc(doc(db, 'settings', 'home'), content);
-      toast.success('Saved. Live on the website within a minute.');
+      await refreshSite();
+      toast.success('Saved. Live on the website now.');
     } catch (err) {
       toast.error(friendlyError(err), { duration: 8000 });
     } finally {
@@ -235,7 +237,7 @@ export default function HomeAdmin() {
       {/* Sticky save bar */}
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-forest-deep/95 p-4 backdrop-blur lg:left-60">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-4">
-          <span className="text-xs text-neutral-500">Changes appear on the website within about a minute of saving.</span>
+          <span className="text-xs text-neutral-500">Changes appear on the website as soon as you save.</span>
           <button onClick={save} disabled={saving} className="admin-btn">{saving ? 'Saving…' : 'Save Home Page'}</button>
         </div>
       </div>

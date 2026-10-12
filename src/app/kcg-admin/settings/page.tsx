@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import toast from 'react-hot-toast';
 import { db } from '@/lib/firebase';
+import { refreshSite } from '@/lib/refresh-site';
 import { friendlyError } from '@/lib/errors';
 import { defaultSettings } from '@/lib/defaults';
 import type { SiteSettings } from '@/types';
@@ -37,7 +38,8 @@ export default function SettingsAdmin() {
     setSaving(true);
     try {
       await setDoc(doc(db, 'settings', 'site'), settings);
-      toast.success('Saved. Live on the website within a minute.');
+      await refreshSite();
+      toast.success('Saved. Live on the website now.');
     } catch (err) {
       toast.error(friendlyError(err), { duration: 8000 });
     } finally {

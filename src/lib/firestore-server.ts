@@ -1,7 +1,7 @@
 /**
  * Server-side Firestore reads over the REST API (plain HTTPS fetch, works in
  * serverless). Responses are cached and refreshed every REVALIDATE_SECONDS, so
- * pages are served static-fast and admin edits appear within a minute.
+ * pages are served static-fast. Admin saves refresh them immediately (see /api/revalidate).
  * Use only in server components / route handlers; the admin panel uses the SDK.
  */
 import type { Project, Service, SiteSettings } from '@/types';
@@ -39,14 +39,14 @@ function decodeDoc<T>(doc: any): T {
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 async function listDocs<T>(collection: string): Promise<T[]> {
-  const res = await fetch(`${BASE}/${collection}?pageSize=300&key=${API_KEY}`, { next: { revalidate: REVALIDATE_SECONDS } });
+  const res = await fetch(`${BASE}/${collection}?pageSize=300&key=${API_KEY}`, { next: { revalidate: REVALIDATE_SECONDS, tags: ['content'] } });
   if (!res.ok) throw new Error(`Firestore REST ${res.status} for ${collection}`);
   const json = await res.json();
   return (json.documents || []).map(decodeDoc<T>);
 }
 
 async function getDocument<T>(collection: string, id: string): Promise<T | null> {
-  const res = await fetch(`${BASE}/${collection}/${id}?key=${API_KEY}`, { next: { revalidate: REVALIDATE_SECONDS } });
+  const res = await fetch(`${BASE}/${collection}/${id}?key=${API_KEY}`, { next: { revalidate: REVALIDATE_SECONDS, tags: ['content'] } });
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`Firestore REST ${res.status} for ${collection}/${id}`);
   return decodeDoc<T>(await res.json());
