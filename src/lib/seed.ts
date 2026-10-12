@@ -10,7 +10,7 @@ import { defaultProjects, defaultServices } from './defaults';
  * touch the exact items they name, so the client's own edits are never overwritten.
  * A marker (settings/content-seeded) records the last update applied.
  */
-const LATEST = 4;
+const LATEST = 5;
 
 type Update = (batch: WriteBatch, previousVersion: number) => Promise<number>;
 
@@ -57,9 +57,26 @@ const addVideoProjects: Update = async (batch) => {
   return changed;
 };
 
+// 5: the bungalow's landscape, slowed-down drone video (only if it still has the original vertical one)
+const landscapeBungalow: Update = async (batch) => {
+  const OLD = '/videos/projects/hillside-bungalow-mirpur.mp4';
+  const snap = await getDocs(collection(db, 'projects'));
+  let changed = 0;
+  snap.docs.filter((d) => d.data().video === OLD).forEach((d) => {
+    const keepPhoto = d.data().image && d.data().image !== '/images/projects/hillside-bungalow-mirpur.webp';
+    batch.update(d.ref, {
+      video: '/videos/projects/hillside-bungalow-mirpur-landscape.mp4',
+      ...(keepPhoto ? {} : { image: '/images/projects/hillside-bungalow-mirpur-landscape.webp' }),
+    });
+    changed++;
+  });
+  return changed;
+};
+
 const updates: [version: number, run: Update][] = [
   [3, initialImport],
   [4, addVideoProjects],
+  [5, landscapeBungalow],
 ];
 
 /** Applies any updates not yet run. Returns the number of items added or changed. */

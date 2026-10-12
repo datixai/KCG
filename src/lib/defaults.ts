@@ -33,7 +33,7 @@ export const BUNGALOW_TEXT =
 
 export const defaultProjects: Project[] = [
   { id: 'p1', title: 'Dadyal Marquee & Wedding Hall', location: 'Dadyal, Mirpur District, AJK', category: 'Commercial', image: '/images/projects/dadyal-marquee-wedding-hall.webp', video: '/videos/projects/dadyal-marquee-wedding-hall.mp4', description: MARQUEE_TEXT },
-  { id: 'p2', title: 'Hillside Bungalow', location: 'Mirpur District, AJK', category: 'Residential', image: '/images/projects/hillside-bungalow-mirpur.webp', video: '/videos/projects/hillside-bungalow-mirpur.mp4', description: BUNGALOW_TEXT },
+  { id: 'p2', title: 'Hillside Bungalow', location: 'Mirpur District, AJK', category: 'Residential', image: '/images/projects/hillside-bungalow-mirpur-landscape.webp', video: '/videos/projects/hillside-bungalow-mirpur-landscape.mp4', description: BUNGALOW_TEXT },
   { id: 'd1', title: 'Concrete Batching Plant', location: 'Dadyal, AJK', category: 'Industrial', image: '/images/site/plant-sunrise.webp' },
   { id: 'd2', title: 'Plant Installation', location: 'Dadyal, AJK', category: 'Industrial', image: '/images/site/site-install-aerial.webp' },
   { id: 'd3', title: 'Aggregate & Conveyor System', location: 'Dadyal, AJK', category: 'Industrial', image: '/images/site/conveyor-sunset.webp' },
