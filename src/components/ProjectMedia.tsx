@@ -45,7 +45,7 @@ export default function ProjectMedia({ p, priority = false }: { p: Project; prio
           <Image src={p.image} alt="" fill priority={priority} sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover"
             onLoad={(e) => { const i = e.currentTarget; if (i.naturalWidth && i.naturalHeight) setRatio(i.naturalWidth / i.naturalHeight); }} />
         )}
-        <BgVideo src={mp4} poster={p.image} className="absolute inset-0 size-full object-cover" />
+        <BgVideo tapToPlay src={mp4} poster={p.image} className="absolute inset-0 size-full object-cover" />
       </div>
     );
 
