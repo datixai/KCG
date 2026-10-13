@@ -29,11 +29,11 @@ export const defaultServices: Service[] = [
 export const MARQUEE_TEXT =
   'A modern marquee and wedding hall in Dadyal, designed with a grand illuminated entrance, a landscaped approach and spacious event halls for weddings and large functions. The video shows the 3D design visualisation of the project.';
 export const BUNGALOW_TEXT =
-  'A two-storey family bungalow on a hillside plot in Mirpur District, with a wide terrace, strong boundary walls and a landscaped driveway that makes the most of the views. The video is a 3D visualisation of the home.';
+  'A two-storey family bungalow on a hillside plot in Mirpur District, with a wide terrace, strong boundary walls and a landscaped driveway that makes the most of the views. Aerial video of the home.';
 
 export const defaultProjects: Project[] = [
   { id: 'p1', title: 'Dadyal Marquee & Wedding Hall', location: 'Dadyal, Mirpur District, AJK', category: 'Commercial', image: '/images/projects/dadyal-marquee-wedding-hall.webp', video: '/videos/projects/dadyal-marquee-wedding-hall.mp4', description: MARQUEE_TEXT },
-  { id: 'p2', title: 'Hillside Bungalow', location: 'Mirpur District, AJK', category: 'Residential', image: '/images/projects/hillside-bungalow-3d.webp', video: '/videos/projects/hillside-bungalow-3d.mp4', description: BUNGALOW_TEXT },
+  { id: 'p2', title: 'Hillside Bungalow', location: 'Mirpur District, AJK', category: 'Residential', image: '/images/projects/hillside-bungalow-aerial.webp', video: '/videos/projects/hillside-bungalow-aerial.mp4', description: BUNGALOW_TEXT },
   { id: 'd1', title: 'Concrete Batching Plant', location: 'Dadyal, AJK', category: 'Industrial', image: '/images/site/plant-sunrise.webp' },
   { id: 'd2', title: 'Plant Installation', location: 'Dadyal, AJK', category: 'Industrial', image: '/images/site/site-install-aerial.webp' },
   { id: 'd3', title: 'Aggregate & Conveyor System', location: 'Dadyal, AJK', category: 'Industrial', image: '/images/site/conveyor-sunset.webp' },
