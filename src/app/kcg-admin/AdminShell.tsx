@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { ExternalLink, FolderKanban, LayoutDashboard, LogOut, Mail, PanelsTopLeft, Settings, Wrench } from 'lucide-react';
+import { Clapperboard, ExternalLink, FolderKanban, LayoutDashboard, LogOut, Mail, PanelsTopLeft, Settings, Wrench } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuth, useRequireAuth } from '@/hooks/useAuth';
@@ -15,6 +15,7 @@ const nav = [
   { href: ADMIN, label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { href: `${ADMIN}/home`, label: 'Home Page', icon: PanelsTopLeft },
   { href: `${ADMIN}/projects`, label: 'Projects', icon: FolderKanban },
+  { href: `${ADMIN}/site-work`, label: 'Site Work', icon: Clapperboard },
   { href: `${ADMIN}/services`, label: 'Services', icon: Wrench },
   { href: `${ADMIN}/messages`, label: 'Messages', icon: Mail },
   { href: `${ADMIN}/settings`, label: 'Settings', icon: Settings },

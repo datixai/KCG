@@ -20,6 +20,7 @@ export const site = {
     { href: '/#about', label: 'About' },
     { href: '/#services', label: 'Services' },
     { href: '/projects', label: 'Projects' },
+    { href: '/site-work', label: 'Site Work' },
     { href: '/#why', label: 'Why KCG' },
     { href: '/#contact', label: 'Contact' },
   ],
