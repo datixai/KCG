@@ -45,6 +45,27 @@ export const defaultSiteWork: SiteWork = {
       image: '/images/site-work/conveyor-installation.webp',
       description: 'The aggregate conveyor fitted and ready to feed the plant.',
     },
+    {
+      title: 'Hopper Lowered into Position',
+      location: 'Dadyal, AJK',
+      video: '/videos/site-work/hopper-lift.mp4',
+      image: '/images/site-work/hopper-lift.webp',
+      description: 'The aggregate hopper lowered by crane onto its steel frame.',
+    },
+    {
+      title: 'Aggregate Batcher in Place',
+      location: 'Dadyal, AJK',
+      video: '/videos/site-work/aggregate-batcher.mp4',
+      image: '/images/site-work/aggregate-batcher.webp',
+      description: 'The PLD1600 aggregate batcher set up and ready for production.',
+    },
+    {
+      title: 'Ground Works & Crane Setup',
+      location: 'Dadyal, AJK',
+      video: '/videos/site-work/ground-works.mp4',
+      image: '/images/site-work/ground-works.webp',
+      description: 'Excavation and crane work as the plant structure goes up.',
+    },
   ],
 };
 

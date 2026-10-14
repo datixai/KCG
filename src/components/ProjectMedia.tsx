@@ -25,7 +25,7 @@ export default function ProjectMedia({ p, priority = false }: { p: Project; prio
     return (
       <div className="relative aspect-video overflow-hidden rounded-sm bg-forest-deep shadow-2xl shadow-forest-deep/25">
         <iframe
-          src={`https://www.youtube-nocookie.com/embed/${yt}?rel=0&modestbranding=1&playsinline=1`}
+          src={`https://www.youtube-nocookie.com/embed/${yt}?rel=0&modestbranding=1&playsinline=1&mute=1`}
           title={alt}
           loading="lazy"
           allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
