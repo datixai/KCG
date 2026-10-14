@@ -66,6 +66,27 @@ export const defaultSiteWork: SiteWork = {
       image: '/images/site-work/ground-works.webp',
       description: 'Excavation and crane work as the plant structure goes up.',
     },
+    {
+      title: 'Foundation Anchor Bolts',
+      location: 'Dadyal, AJK',
+      video: '/videos/site-work/foundation-bolts.mp4',
+      image: '/images/site-work/foundation-bolts.webp',
+      description: 'Anchor-bolt frames set in fresh concrete to hold the plant structure.',
+    },
+    {
+      title: 'Steel Column Raised',
+      location: 'Dadyal, AJK',
+      video: '/videos/site-work/column-raised.mp4',
+      image: '/images/site-work/column-raised.webp',
+      description: 'A tall steel column lifted by crane and guided into place by the crew.',
+    },
+    {
+      title: 'Conveyor Frame Assembly',
+      location: 'Dadyal, AJK',
+      video: '/videos/site-work/conveyor-frame.mp4',
+      image: '/images/site-work/conveyor-frame.webp',
+      description: 'The conveyor frame laid out and assembled with the plant rising behind it.',
+    },
   ],
 };
 
